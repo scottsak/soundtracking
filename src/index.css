@@ -1,0 +1,304 @@
+body {
+  margin: 0;
+  background-color: #25274d;
+  color: #edf5e1;
+  font-family: "League Spartan", sans-serif;
+  text-align: center;
+  overflow: hidden; /* Hide scrollbars */
+}
+
+a {
+  color: inherit;
+}
+
+ul {
+  padding-left: 0px;
+}
+
+#gameTitle {
+  padding: 40px 0px;
+  font-size: 60px;
+  font-family: "Bungee Shade", cursive;
+}
+
+.card {
+  width: 170px;
+  /* height: 270px; */
+  background-color: #464866;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.cardInfo {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.scroll {
+  /* background-color: #333; */
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.timelineCard {
+  /* height: 400px; */
+  display: inline-block;
+  /* color: white; */
+  text-align: left;
+  padding: 0px 14px;
+  text-decoration: none;
+  padding-left: 0px;
+  font-family: "Sarabun", sans-serif;
+}
+
+.timelineCards {
+  width: 100%;
+  margin: 0 auto;
+  overflow: auto;
+  height: 300px;
+  overflow: auto;
+  overflow-y: hidden;
+}
+
+/* .timelineCard:hover {
+  background-color: #777;
+} */
+
+.cardPoster {
+  padding-top: 10px;
+  width: 150px;
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+}
+
+.nextCard {
+  height: 250px;
+}
+
+.boardGame {
+  height: 300px;
+  /* overflow-y: hidden; */
+  /* position: relative; */
+  bottom: 0px;
+}
+
+.lostModal {
+  background-color: #474860;
+  height: 200px;
+  margin: auto;
+  width: 50%;
+  border: 3px solid #edf5e1;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.loseButton {
+  color: black;
+  border: none;
+  border-radius: 5px;
+  width: 150px;
+  height: 40px;
+  /* margin: 10px; */
+  /* border: 2px solid #5CDB95; */
+}
+
+.cardRight {
+  background-color: #464866 !important;
+}
+
+.cardWrong {
+  background-color: #9f2d4d !important;
+}
+
+.loseTable {
+  width: 100%;
+}
+
+.pause {
+  position: absolute;
+  left: 70px;
+  top: 10px;
+  width: 30px;
+  height: 30px;
+  border: 3px solid #3c4b59;
+  background-color: #464866;
+}
+
+.pause:hover {
+  background-color: #edf5e1;
+}
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.modal.enter-done {
+  opacity: 1;
+  pointer-events: visible;
+}
+
+.modal.exit {
+  opacity: 0;
+}
+
+.modal-content {
+  width: 500px;
+  background-color: #3c4b59;
+  transition: all 0.3s ease-in-out;
+  transform: translateY(-200px);
+}
+
+.modal.enter-done .modal-content {
+  transform: translateY(0);
+}
+
+.modal.exit .modal-content {
+  transform: translateY(-200px);
+}
+
+.modal-header,
+.modal-footer {
+  padding: 10px;
+}
+
+.modal-title {
+  margin: 0;
+}
+
+.modal-body {
+  padding: 10px;
+  /* border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee; */
+}
+
+.button {
+  border-radius: 50%;
+  border: none;
+  background-color: inherit;
+  color: #edf5e1;
+}
+
+.copyright {
+  /* font-family: ; */
+  font-size: 12px;
+  margin-bottom: 0;
+}
+
+.modal-footer {
+  display: block;
+}
+
+.owner {
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+  text-align: center;
+  font-size: 12px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+
+/* #shareScore{
+  margin-left: 100px;
+}
+
+#playAgain{
+  margin-right: 100px;
+} */
+
+@media only screen and (max-width: 1024px) {
+  #gameTitle {
+    font-size: 50px;
+  }
+  .lostModal {
+    width: 90%;
+    padding-bottom: 20px;
+  }
+  .nextCard {
+    height: 150px;
+  }
+  .boardGame {
+    height: 200px;
+    padding-top: 20px;
+    /* overflow-y: hidden; */
+    /* position: relative; */
+    bottom: 0px;
+  }
+  .cardPoster {
+    padding-top: 5px;
+    width: 100px;
+  }
+
+  .card {
+    width: 120px;
+    border-radius: 10px;
+  }
+
+  .loseButton {
+    width: 140px;
+  }
+
+  .cardInfo {
+    margin-top: 0px;
+    font-size: 15px;
+    width: 100%;
+  }
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 800px) {
+  .pause {
+    top: 10px;
+    left: 10px;
+    font-size: 15px;
+  }
+
+  #gameTitle {
+    font-size: 30px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .lostModal {
+    width: 90%;
+    padding-bottom: 20px;
+  }
+
+  .loseButton {
+    width: 140px;
+  }
+
+  .nextCard {
+    height: 200px;
+  }
+
+  .boardGame {
+    height: 250px;
+    padding-top: 20px;
+    /* overflow-y: hidden; */
+    /* position: relative; */
+    bottom: 0px;
+  }
+
+  .cardPoster {
+    padding-top: 5px;
+    width: 100px;
+  }
+
+  .card {
+    width: 120px;
+    border-radius: 10px;
+  }
+}
