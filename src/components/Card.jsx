@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./card.js";
 import { Draggable } from "react-beautiful-dnd";
-import * as api from "../api.js";
 
 function Card(props) {
   const months = [
@@ -48,7 +47,7 @@ function Card(props) {
     // console.log(props.poster)
     // console.log("------------------------------------")
     if (props.poster === null) {
-      return "https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie.jpg";
+      return "https://f4.bcbits.com/img/a4139357031_10.jpg";
     }
     return props.poster;
   }

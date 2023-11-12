@@ -6,10 +6,14 @@ const movies = [
   {
     key: 123432154,
     poster_path:
-      "https://image.tmdb.org/t/p/original/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
+      "https://i.scdn.co/image/ab67616d00001e02da5d5aeeabacacc1263c0f4b",
     title: "Fight Club",
-    release_date: "1999-11-11",
-    id: 53454332,
+    album: {
+      albumName: "Lover",
+      artist: "Taylor Swift",
+    },
+    release_date: "2017-11-10",
+    id: "0VE4kBnHJUgtMf0dy6DRmW",
     correct: true,
   },
 ];
@@ -18,10 +22,14 @@ const movieQueued = [
   {
     key: 123432112530,
     poster_path:
-      "https://image.tmdb.org/t/p/original/6rVIjriV3Sv1B9INrzGRXW8Q7aY.jpg",
-    title: "The Magnificent Seven",
-    release_date: "1960-04-14",
-    id: 542349012,
+      "https://i.scdn.co/image/ab67616d00001e0231dc2b6da1570a9c8929e0f6",
+    album: {
+      albumName: "Comfort Eagle",
+      artist: "CAKE",
+    },
+    title: "Short Skirt/Long Jacket",
+    release_date: "2001-07-24",
+    id: "3OOFEF20WqtsUPcRbPY3L7",
     correct: null,
   },
 ];

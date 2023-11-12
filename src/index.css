@@ -29,6 +29,10 @@ ul {
   border-radius: 10px;
 }
 
+.lastCard {
+  width: 170px;
+}
+
 .cardInfo {
   margin-top: 10px;
   width: 100%;
@@ -44,7 +48,7 @@ ul {
   /* height: 400px; */
   display: inline-block;
   /* color: white; */
-  text-align: left;
+  text-align: right;
   padding: 0px 14px;
   text-decoration: none;
   padding-left: 0px;
@@ -244,6 +248,10 @@ ul {
     border-radius: 10px;
   }
 
+  .lastCard {
+    width: 120px;
+  }
+
   .loseButton {
     width: 140px;
   }
@@ -295,6 +303,10 @@ ul {
   .cardPoster {
     padding-top: 5px;
     width: 100px;
+  }
+
+  .lastCard {
+    width: 120px;
   }
 
   .card {
