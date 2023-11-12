@@ -7,11 +7,8 @@ const movies = [
     key: 123432154,
     poster_path:
       "https://i.scdn.co/image/ab67616d00001e02da5d5aeeabacacc1263c0f4b",
-    title: "Fight Club",
-    album: {
-      albumName: "Lover",
-      artist: "Taylor Swift",
-    },
+    title: "Lover",
+    artist: "Taylor Swift",
     release_date: "2017-11-10",
     id: "0VE4kBnHJUgtMf0dy6DRmW",
     correct: true,
@@ -23,49 +20,49 @@ const movieQueued = [
     key: 123432112530,
     poster_path:
       "https://i.scdn.co/image/ab67616d00001e0231dc2b6da1570a9c8929e0f6",
-    album: {
-      albumName: "Comfort Eagle",
-      artist: "CAKE",
-    },
-    title: "Short Skirt/Long Jacket",
+    artist: "CAKE",
+    title: "Comfort Eagle",
     release_date: "2001-07-24",
     id: "3OOFEF20WqtsUPcRbPY3L7",
     correct: null,
   },
 ];
 
-const movieIDs = [542349012];
+const albumIds = new Set(["3OOFEF20WqtsUPcRbPY3L7"]);
 
 function addMovie(movie) {
-  let randNum = Math.floor(Math.random() * (19 - 1 + 0)) + 0;
+  console.log("scotttest add Movie gets called");
   let movieFound = true;
   let count = 0;
   let mov = {};
   // console.log(movie.data.results)
+  const response = movie[0];
+  console.log("scotttest movie", response);
+  console.log("scotttest response.album.id", response.album.id);
   while (movieFound) {
-    if (
-      !movie.data.results[randNum].adult &&
-      movie.data.results[randNum].vote_count > 1500 &&
-      !movieIDs.includes(movie.data.results[randNum].id)
-    ) {
+    console.log(
+      "scotttest goes through while ooo[",
+      response.album.id,
+      response.popularity
+    );
+    count = count + 1;
+    if (!albumIds.has(response.album.id) && response.popularity > 50) {
+      console.log("scotttest goes through hereeee");
       mov = {
-        key: movie.data.results[randNum].id,
-        poster_path:
-          "https://image.tmdb.org/t/p/original/" +
-          movie.data.results[randNum].poster_path,
-        title: movie.data.results[randNum].title,
-        release_date: movie.data.results[randNum].release_date,
-        id: movie.data.results[randNum].id,
+        key: response.album.id,
+        poster_path: response.album.images[1].url,
+        title: response.album.name,
+        release_date: response.album.release_date,
+        id: response.album.id,
         correct: null,
       };
-      movieIDs.push(movie.data.results[randNum].id);
+      albumIds.add(response.album.id);
       movieQueued.push(mov);
+      console.log("scotttest movieQueued", movieQueued);
       movieFound = false;
-    } else if (count < 10) {
-      randNum = Math.floor(Math.random() * (19 - 1 + 0)) + 0;
-      count++;
     } else {
-      api.newMovie();
+      console.log("scotttest calls add Movie");
+      // api.newMovie();
       break;
     }
   }

@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  background-color: #25274d;
+  background-color: #212121;
   color: #edf5e1;
   font-family: "League Spartan", sans-serif;
   text-align: center;
@@ -24,7 +24,7 @@ ul {
 .card {
   width: 170px;
   /* height: 270px; */
-  background-color: #464866;
+  background-color: #1db954;
   text-align: center;
   border-radius: 10px;
 }
@@ -108,7 +108,7 @@ ul {
 }
 
 .cardRight {
-  background-color: #464866 !important;
+  background-color: #535353 !important;
 }
 
 .cardWrong {

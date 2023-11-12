@@ -10,7 +10,7 @@ import LoseScreen from "./LoseScreen.jsx";
 import Header from "./Header.jsx";
 
 function App() {
-  api.newMovie();
+  // api.newMovie();
   let startMovie;
   if (
     localStorage.getItem("lastItem") === "undefined" ||
@@ -36,11 +36,11 @@ function App() {
   const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
 
-  function changeMovie() {
-    api.newMovie();
+  const changeMovie = async () => {
+    await api.newMovie();
     let nextMovie = card.movieQueued[card.movieQueued.length - 1];
     setGameCard(nextMovie);
-  }
+  };
 
   function handleOnDragEnd(result) {
     let correct = true;

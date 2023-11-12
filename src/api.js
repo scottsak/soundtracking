@@ -1,10 +1,13 @@
 // import axios from 'axios';
 import * as moviesFile from "./components/card.js";
 
-const apiKEY = "api_key=9192af8a9192f6deb676dc0150d2e4aa&language=en-US";
-const baseURL = "https://api.themoviedb.org/3/movie/popular?";
+const baseURL = "https://api.spotify.com/v1/recommendations?seed_artists=";
 
-const axios = require("axios");
+const seedArtists = [
+  "06HL4z0CvFAxyc27GXpf02",
+  "6eUKZXaKkcviH0Ku9w2n3V",
+  "04gDigrS5kc9YWfZHwBETP",
+];
 
 const authParameters = {
   method: "POST",
@@ -18,6 +21,7 @@ const authParameters = {
     process.env.REACT_APP_CLIENT_SECRET,
 };
 
+console.log("scotttest makes a call");
 const accessToken = await fetch(
   "https://accounts.spotify.com/api/token",
   authParameters
@@ -26,21 +30,26 @@ const accessToken = await fetch(
   .then((data) => data.access_token)
   .catch((err) => console.error(err));
 
-console.log("scotttest accessToken", accessToken);
+var artistParameters = {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + accessToken,
+  },
+};
 
-function getRandMovie() {
-  return (Math.floor(Math.random() * (484 - 1 + 1)) + 1).toString();
-}
-
-function newMovie() {
-  axios
-    .get(baseURL + apiKEY + "&page=" + getRandMovie())
-    .then((res) => {
-      moviesFile.addMovie(res);
+const newMovie = async () => {
+  console.log("scotttest makes a call");
+  await fetch(`${baseURL}${seedArtists.join(",")}`, artistParameters)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("scotttest finaldata", data.tracks);
+      moviesFile.addMovie(data.tracks);
     })
-    .catch((error) => {
-      newMovie();
+    .catch((err) => {
+      console.error(err);
+      // newMovie();
     });
-}
+};
 
 export { newMovie };
