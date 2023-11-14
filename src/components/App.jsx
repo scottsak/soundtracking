@@ -69,7 +69,7 @@ function App() {
 
           document.body.style.backgroundColor = "#9F2D4D";
           setTimeout(() => {
-            document.body.style.backgroundColor = "#25274D";
+            document.body.style.backgroundColor = "#121212";
           }, 200);
         } else {
           setScore(score + 1);
@@ -109,7 +109,7 @@ function App() {
           </>
         )}
         <div className="boardGame scroll">
-          <PlayedCards movieData={movieData} />
+          <PlayedCards movieData={movieData} lives={lives} />
         </div>
       </DragDropContext>
     </div>

@@ -26,7 +26,10 @@ function Card(props) {
     let year = d.getFullYear();
     if (used) {
       return (
-        <p className="cardInfo">{months[month] + " " + day + " " + year}</p>
+        <>
+          <p className="cardInfo">{props.title}</p>
+          <p className="cardInfo">{months[month] + " " + day + " " + year}</p>
+        </>
       );
     } else {
       return null;
@@ -68,7 +71,7 @@ function Card(props) {
             {...provided.dragHandleProps}
           >
             <img className="cardPoster" src={Findposter()} alt={props.title} />
-            <CardUsed used={props.used} date={props.date} />
+            <CardUsed used={props.used} date={props.date} title={props.title} />
           </div>
         );
       }}

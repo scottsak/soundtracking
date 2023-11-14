@@ -4,7 +4,7 @@ function Lives(props) {
   function Heart() {
     return (
       <img
-        src={require("../images/heart.png")}
+        src={require("../images/heart-green.png")}
         alt="Girl in a jacket"
         width="50"
       ></img>
