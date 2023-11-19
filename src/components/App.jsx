@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card.jsx";
 import * as card from "./card.js";
 import * as api from "../api.js";
@@ -11,30 +11,33 @@ import Header from "./Header.jsx";
 
 function App() {
   // api.newMovie();
-  let startMovie;
-  if (
-    localStorage.getItem("lastItem") === "undefined" ||
-    localStorage.getItem("lastItem") === null
-  ) {
-    startMovie = [api.songsUsed[api.songsUsed.length - 1]];
-  } else {
-    startMovie = [JSON.parse(localStorage.getItem("lastItem"))];
-    startMovie[0].correct = true;
-  }
-  let startGameCard;
-  if (
-    localStorage.getItem("lastGameCard") === "undefined" ||
-    localStorage.getItem("lastGameCard") === null
-  ) {
-    startGameCard = api.songQueued[api.songQueued.length - 1];
-  } else {
-    startGameCard = JSON.parse(localStorage.getItem("lastGameCard"));
-  }
-
-  const [movieData, setMovie] = useState(startMovie);
-  const [gameCard, setGameCard] = useState(startGameCard);
+  const [movieData, setMovie] = useState([]);
+  const [gameCard, setGameCard] = useState({});
   const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
+
+  useEffect(() => {
+    console.log("scotttest should run at start");
+    if (
+      localStorage.getItem("lastItem") === "undefined" ||
+      localStorage.getItem("lastItem") === null
+    ) {
+      setMovie([api.songsUsed[api.songsUsed.length - 1]]);
+    } else {
+      const lastSong = [JSON.parse(localStorage.getItem("lastItem"))];
+      lastSong[0].correct = true;
+      console.log("scotttest lastSong", lastSong);
+      setMovie(lastSong);
+    }
+    if (
+      localStorage.getItem("lastGameCard") === "undefined" ||
+      localStorage.getItem("lastGameCard") === null
+    ) {
+      setGameCard(api.songQueued[api.songQueued.length - 1]);
+    } else {
+      setGameCard(JSON.parse(localStorage.getItem("lastGameCard")));
+    }
+  }, []);
 
   const changeMovie = async () => {
     await api.newMovie();
