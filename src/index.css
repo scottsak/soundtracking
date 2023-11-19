@@ -2,7 +2,7 @@ body {
   margin: 0;
   background-color: #121212;
   color: #edf5e1;
-  font-family: "League Spartan", sans-serif;
+  font-family: "Montserrat", "League Spartan", sans-serif;
   text-align: center;
   overflow: hidden; /* Hide scrollbars */
 }
@@ -18,7 +18,10 @@ ul {
 #gameTitle {
   padding: 40px 0px;
   font-size: 60px;
-  font-family: "Bungee Shade", cursive;
+  color: #1db954;
+  font-weight: 600;
+  /* font-family: "Bungee Shade", cursive; */
+  font-family: "Montserrat", sans-serif;
 }
 
 .card {
@@ -52,7 +55,8 @@ ul {
   padding: 0px 14px;
   text-decoration: none;
   padding-left: 0px;
-  font-family: "Sarabun", sans-serif;
+  font-weight: 600;
+  font-family: "Montserrat", "Sarabun", sans-serif;
 }
 
 .timelineCards {
