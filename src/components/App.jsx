@@ -16,7 +16,7 @@ function App() {
     localStorage.getItem("lastItem") === "undefined" ||
     localStorage.getItem("lastItem") === null
   ) {
-    startMovie = [card.movies[card.movies.length - 1]];
+    startMovie = [api.songsUsed[api.songsUsed.length - 1]];
   } else {
     startMovie = [JSON.parse(localStorage.getItem("lastItem"))];
     startMovie[0].correct = true;
@@ -26,7 +26,7 @@ function App() {
     localStorage.getItem("lastGameCard") === "undefined" ||
     localStorage.getItem("lastGameCard") === null
   ) {
-    startGameCard = card.movieQueued[card.movieQueued.length - 1];
+    startGameCard = api.songQueued[api.songQueued.length - 1];
   } else {
     startGameCard = JSON.parse(localStorage.getItem("lastGameCard"));
   }
@@ -38,7 +38,7 @@ function App() {
 
   const changeMovie = async () => {
     await api.newMovie();
-    let nextMovie = card.movieQueued[card.movieQueued.length - 1];
+    let nextMovie = api.songQueued[api.songQueued.length - 1];
     setGameCard(nextMovie);
   };
 
@@ -50,9 +50,9 @@ function App() {
         result.source.droppableId === "next" &&
         result.destination.droppableId === "played"
       ) {
-        card.movies.push(gameCard);
+        api.songsUsed.push(gameCard);
 
-        let tempMovie = card.movies[card.movies.length - 1];
+        let tempMovie = api.songsUsed[api.songsUsed.length - 1];
 
         const items = Array.from(movieData);
         items.splice(result.destination.index, 0, gameCard);

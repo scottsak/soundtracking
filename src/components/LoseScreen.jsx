@@ -7,7 +7,7 @@ function LoseScreen(props) {
   const [highScore, setHighScore] = useState(
     localStorage.getItem("highscore") ?? "0"
   );
-  let movieToBeSaved = JSON.stringify(card.movies[card.movies.length - 1]);
+  let movieToBeSaved = JSON.stringify(api.songsUsed[api.songsUsed.length - 1]);
 
   function checkHighScore(score) {
     localStorage.setItem("lastItem", movieToBeSaved);
@@ -21,8 +21,8 @@ function LoseScreen(props) {
 
   function playAgain() {
     props.setLives(3);
-    card.movies[card.movies.length - 1].correct = true;
-    props.setMovie([card.movies[card.movies.length - 1]]);
+    api.songsUsed[api.songsUsed.length - 1].correct = true;
+    props.setMovie([api.songsUsed[api.songsUsed.length - 1]]);
 
     props.setScore(0);
   }
