@@ -31,9 +31,10 @@ function addMovie(movie) {
         correct: null,
       };
       albumIds.add(response.album.id);
-      api.songsUsed.push(api.songQueued.pop());
+      const lastCardPlayed = api.cardToPlay.pop();
+      api.songsUsed.push(lastCardPlayed);
       api.songQueued.push(mov);
-      console.log("scotttest api.songQueued", api.songQueued);
+      console.log("scotttest api.cardToPlay", api.cardToPlay);
       movieNotFound = false;
     } else {
       console.log("scotttest calls add Movie");

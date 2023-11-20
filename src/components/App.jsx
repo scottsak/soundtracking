@@ -33,16 +33,16 @@ function App() {
       localStorage.getItem("lastGameCard") === "undefined" ||
       localStorage.getItem("lastGameCard") === null
     ) {
-      setGameCard(api.songQueued[api.songQueued.length - 1]);
+      setGameCard(api.cardToPlay[api.cardToPlay.length - 1]);
     } else {
       setGameCard(JSON.parse(localStorage.getItem("lastGameCard")));
     }
   }, []);
 
   const changeMovie = async () => {
-    await api.newMovie();
     let nextMovie = api.songQueued[api.songQueued.length - 1];
     setGameCard(nextMovie);
+    await api.newMovie();
   };
 
   function handleOnDragEnd(result) {

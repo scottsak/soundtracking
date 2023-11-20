@@ -20,6 +20,22 @@ const songsUsed = [
     id: "0VE4kBnHJUgtMf0dy6DRmW",
     correct: true,
   },
+];
+
+const songQueued = [
+  {
+    key: 32134432435,
+    poster_path:
+      "https://i.scdn.co/image/ab67616d00001e025551adb75cf7c4737f93ed1d",
+    artist: "Various Artists",
+    title: "Sing 2",
+    release_date: "2021-12-17",
+    id: "3WCLzYOlSmLD2cy1RXdwUd",
+    correct: null,
+  },
+];
+
+const cardToPlay = [
   {
     key: 123432112530,
     poster_path:
@@ -31,8 +47,6 @@ const songsUsed = [
     correct: null,
   },
 ];
-
-const songQueued = [];
 
 const authParameters = {
   method: "POST",
@@ -77,4 +91,4 @@ const newMovie = async () => {
     });
 };
 
-export { newMovie, songQueued, songsUsed };
+export { newMovie, cardToPlay, songQueued, songsUsed };
