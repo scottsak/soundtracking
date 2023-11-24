@@ -5,21 +5,10 @@ import {
   songQueued,
   songsUsed,
   seedArtists,
+  authParameters,
 } from "./startingSongs.js";
 
 const baseURL = "https://api.spotify.com/v1/recommendations?seed_artists=";
-
-const authParameters = {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/x-www-form-urlencoded",
-  },
-  body:
-    "grant_type=client_credentials&client_id=" +
-    process.env.REACT_APP_CLIENT_ID +
-    "&client_secret=" +
-    process.env.REACT_APP_CLIENT_SECRET,
-};
 
 const accessToken = await fetch(
   "https://accounts.spotify.com/api/token",

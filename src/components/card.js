@@ -1,7 +1,6 @@
 // import { getMouseEventOptions } from "@testing-library/user-event/dist/utils";
 import * as api from "../api.js";
-
-const albumIds = new Set(["3OOFEF20WqtsUPcRbPY3L7"]);
+import { albumIds } from "../startingSongs.js";
 
 function addMovie(movie) {
   console.log("scotttest add Movie gets called");

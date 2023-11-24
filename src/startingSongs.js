@@ -4,6 +4,20 @@ const seedArtists = [
   "04gDigrS5kc9YWfZHwBETP",
 ];
 
+const albumIds = new Set(["3OOFEF20WqtsUPcRbPY3L7"]);
+
+const authParameters = {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body:
+    "grant_type=client_credentials&client_id=" +
+    process.env.REACT_APP_CLIENT_ID +
+    "&client_secret=" +
+    process.env.REACT_APP_CLIENT_SECRET,
+};
+
 const songsUsed = [
   {
     key: 123432154,
@@ -43,4 +57,11 @@ const cardToPlay = [
   },
 ];
 
-export { cardToPlay, songQueued, songsUsed, seedArtists };
+export {
+  cardToPlay,
+  songQueued,
+  songsUsed,
+  seedArtists,
+  albumIds,
+  authParameters,
+};
