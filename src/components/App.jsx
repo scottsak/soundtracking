@@ -10,7 +10,6 @@ import LoseScreen from "./LoseScreen.jsx";
 import Header from "./Header.jsx";
 
 function App() {
-  // api.newMovie();
   const [movieData, setMovie] = useState([]);
   const [gameCard, setGameCard] = useState({});
   const [lives, setLives] = useState(3);
@@ -45,9 +44,8 @@ function App() {
     await api.newMovie();
   };
 
-  function handleOnDragEnd(result) {
+  const handleOnDragEnd = async (result) => {
     let correct = true;
-    // console.log(result)
     if (result.destination !== null) {
       if (
         result.source.droppableId === "next" &&
@@ -70,7 +68,7 @@ function App() {
           setLives(lives - 1);
           items[items.indexOf(tempMovie)].correct = false;
 
-          document.body.style.backgroundColor = "#9F2D4D";
+          document.body.style.backgroundColor = "# ";
           setTimeout(() => {
             document.body.style.backgroundColor = "#121212";
           }, 200);
@@ -79,14 +77,14 @@ function App() {
           items[items.indexOf(tempMovie)].correct = true;
         }
         setMovie(items);
-        changeMovie();
+        await changeMovie();
         let lastGameCard = JSON.stringify(gameCard);
         if (lives > 1) {
           localStorage.setItem("lastGameCard", lastGameCard);
         }
       }
     }
-  }
+  };
 
   return (
     <div>

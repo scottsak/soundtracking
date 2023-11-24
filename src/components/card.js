@@ -1,5 +1,4 @@
 // import { getMouseEventOptions } from "@testing-library/user-event/dist/utils";
-import Card from "./Card.jsx";
 import * as api from "../api.js";
 
 const albumIds = new Set(["3OOFEF20WqtsUPcRbPY3L7"]);
