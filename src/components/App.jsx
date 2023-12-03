@@ -89,6 +89,7 @@ function App() {
   return (
     <div>
       <Header />
+      <h1 id="gameTitle">SoundTracking</h1>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {lives < 1 ? (
           <div className="nextCard">

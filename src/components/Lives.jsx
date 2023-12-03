@@ -6,7 +6,7 @@ function Lives(props) {
       <img
         src={require("../images/heart-green.png")}
         alt="Girl in a jacket"
-        width="50"
+        className="hearts"
       ></img>
     );
   }
