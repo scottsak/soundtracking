@@ -6,9 +6,10 @@ import {
   songsUsed,
   seedArtists,
   authParameters,
+  albumIds,
 } from "./startingSongs.js";
 
-const baseURL = "https://api.spotify.com/v1/recommendations?seed_artists=";
+// const baseURL = "https://api.spotify.com/v1/recommendations?seed_artists=";
 
 const accessToken = await fetch(
   "https://accounts.spotify.com/api/token",
@@ -26,18 +27,74 @@ const artistParameters = {
   },
 };
 
-const newMovie = async () => {
-  console.log("scotttest makes a call");
-  await fetch(`${baseURL}${seedArtists.join(",")}`, artistParameters)
+const getRandomYear = () => {
+  const max = 2023;
+  const min = 1920;
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+const getTopSongOfRandomYearPlaylist = async (randomYear) => {
+  const randomYearBestSongs = await fetch(
+    `https://api.spotify.com/v1/search?q=Top+hits+of+${randomYear}&type=playlist`,
+    artistParameters
+  )
     .then((response) => response.json())
     .then((data) => {
-      console.log("scotttest finaldata", data.tracks);
-      moviesFile.addMovie(data.tracks);
+      const topSongPlaylists = data?.playlists?.items?.[0];
+      console.log("scotttest finaldata", topSongPlaylists);
+      return topSongPlaylists;
+      // moviesFile.addMovie(data.tracks);
     })
     .catch((err) => {
       console.error(err);
       // newMovie();
     });
+  return randomYearBestSongs;
+};
+
+const getRandomAlbum = async (bestSongPlaylist) => {
+  await fetch(
+    `https://api.spotify.com/v1/playlists/${bestSongPlaylist?.id}/tracks`,
+    artistParameters
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const topSongPlaylists = data?.items;
+      console.log("scotttest topSongPlaylists", topSongPlaylists);
+      for (let i = 0; i < topSongPlaylists.length; i++) {
+        if (!albumIds.has(topSongPlaylists[i].track.album.id)) {
+          const albumChosen = topSongPlaylists[i].track.album;
+          const album = {
+            key: albumChosen.id,
+            poster_path: albumChosen.images[1].url,
+            title: albumChosen.name,
+            release_date: albumChosen.release_date,
+            id: albumChosen.id,
+            correct: null,
+          };
+          albumIds.add(albumChosen.id);
+          const lastCardPlayed = cardToPlay.pop();
+          songsUsed.push(lastCardPlayed);
+          songQueued.push(album);
+          break;
+        }
+      }
+      return topSongPlaylists;
+      // moviesFile.addMovie(data.tracks);
+    })
+    .catch((err) => {
+      console.error(err);
+      // newMovie();
+    });
+};
+
+const newMovie = async () => {
+  console.log("scotttest makes a call");
+  const randomYear = getRandomYear();
+  console.log("scotttest randomYear", randomYear);
+  const bestSongPlaylist = await getTopSongOfRandomYearPlaylist(randomYear);
+  console.log("scotttest bestSongPlaylist", bestSongPlaylist);
+  const randomAlbum = await getRandomAlbum(bestSongPlaylist);
 };
 
 export { newMovie, cardToPlay, songQueued, songsUsed };

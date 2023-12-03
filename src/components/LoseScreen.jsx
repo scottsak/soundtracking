@@ -21,8 +21,10 @@ function LoseScreen(props) {
 
   function playAgain() {
     props.setLives(3);
-    api.songsUsed[api.songsUsed.length - 1].correct = true;
-    props.setMovie([api.songsUsed[api.songsUsed.length - 1]]);
+    console.log("scotttest api.songsUsed", api.songsUsed);
+    const songsUsed = api.songsUsed.filter((item) => item);
+    songsUsed.filter((item) => item)[songsUsed.length - 1].correct = true;
+    props.setMovie([songsUsed[songsUsed.length - 1]]);
 
     props.setScore(0);
   }
