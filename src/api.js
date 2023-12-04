@@ -47,7 +47,6 @@ const getTopSongOfRandomYearPlaylist = async (randomYear) => {
     })
     .catch((err) => {
       console.error(err);
-      // newMovie();
     });
   return randomYearBestSongs;
 };
@@ -74,7 +73,7 @@ const getRandomAlbum = async (bestSongPlaylist) => {
           };
           albumIds.add(albumChosen.id);
           const lastCardPlayed = cardToPlay.pop();
-          songsUsed.push(lastCardPlayed);
+          cardToPlay.push(songQueued.pop());
           songQueued.push(album);
           break;
         }
@@ -84,16 +83,13 @@ const getRandomAlbum = async (bestSongPlaylist) => {
     })
     .catch((err) => {
       console.error(err);
-      // newMovie();
     });
 };
 
 const newMovie = async () => {
   console.log("scotttest makes a call");
   const randomYear = getRandomYear();
-  console.log("scotttest randomYear", randomYear);
   const bestSongPlaylist = await getTopSongOfRandomYearPlaylist(randomYear);
-  console.log("scotttest bestSongPlaylist", bestSongPlaylist);
   const randomAlbum = await getRandomAlbum(bestSongPlaylist);
 };
 
