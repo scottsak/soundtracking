@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./card.js";
 import { Draggable } from "react-beautiful-dnd";
 
 function Card(props) {

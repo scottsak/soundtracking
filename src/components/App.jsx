@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Card from "./Card.jsx";
-import * as card from "./card.js";
 import * as api from "../api.js";
 import { DragDropContext } from "react-beautiful-dnd";
 import PlayedCards from "./PlayedCards.jsx";

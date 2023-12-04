@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import * as app from "./App.jsx";
-import * as card from "./card.js";
 import * as api from "../api";
 
 function LoseScreen(props) {

@@ -1,5 +1,4 @@
 // import axios from 'axios';
-import * as moviesFile from "./components/card.js";
 import {
   cardToPlay,
   songQueued,
