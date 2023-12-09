@@ -65,7 +65,8 @@ const getRandomAlbum = async (bestSongPlaylist) => {
           const album = {
             key: albumChosen.id,
             poster_path: albumChosen.images[1].url,
-            title: albumChosen.name,
+            title: albumChosen.name.split("(")[0],
+            artist: albumChosen.artists[0].name,
             release_date: albumChosen.release_date,
             id: albumChosen.id,
             correct: null,

@@ -74,6 +74,7 @@ function App() {
           setScore(score + 1);
           items[items.indexOf(tempMovie)].correct = true;
         }
+        console.log("scotttest items", items);
         setMovie(items);
         await changeMovie();
         let lastGameCard = JSON.stringify(gameCard);
@@ -87,7 +88,7 @@ function App() {
   return (
     <div>
       <Header />
-      <h1 id="gameTitle">SoundTracking</h1>
+      <h1 id="gameTitle">Scottify</h1>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {lives < 1 ? (
           <div className="nextCard">

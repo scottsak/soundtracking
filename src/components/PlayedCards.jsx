@@ -11,6 +11,7 @@ function PlayedCards(props) {
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
+          {console.log("scotttest movieData", props.movieData)}
           {props.movieData.map((movieItem, index) => {
             return (
               <>
@@ -22,6 +23,7 @@ function PlayedCards(props) {
                     used={true}
                     title={movieItem.title}
                     poster={movieItem.poster_path}
+                    artist={movieItem.artist}
                     date={movieItem.release_date}
                     right={movieItem.correct}
                   />

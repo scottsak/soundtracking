@@ -26,8 +26,11 @@ function Card(props) {
     if (used) {
       return (
         <>
-          <p className="cardInfo">{props.title}</p>
-          <p className="cardInfo">{months[month] + " " + day + " " + year}</p>
+          <div className="cardInfoContainer">
+            <p className="cardInfo cardTitle">{props.title}</p>
+            <p className="cardInfo cardArtist">{props.artist}</p>
+            <p className="cardInfo cardDate">{months[month] + " " + year}</p>
+          </div>
         </>
       );
     } else {
@@ -70,7 +73,12 @@ function Card(props) {
             {...provided.dragHandleProps}
           >
             <img className="cardPoster" src={Findposter()} alt={props.title} />
-            <CardUsed used={props.used} date={props.date} title={props.title} />
+            <CardUsed
+              used={props.used}
+              date={props.date}
+              title={props.title}
+              artist={props.artist}
+            />
           </div>
         );
       }}

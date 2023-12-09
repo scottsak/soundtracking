@@ -25,20 +25,45 @@ ul {
 }
 
 .card {
-  width: 170px;
+  align-items: center;
+  width: 175px;
   /* height: 270px; */
   background-color: #1db954;
+  color: #faf9f6;
   text-align: center;
   border-radius: 10px;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .lastCard {
   width: 170px;
 }
 
+.cardInfoContainer {
+  width: 150px;
+  padding: 20px 0px;
+}
+
 .cardInfo {
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  text-align: left;
   width: 100%;
+  margin: 0px;
+}
+
+.cardTitle {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.cardArtist {
+  font-size: small;
+  color: #bab5b5;
+}
+
+.cardDate {
+  color: #bab5b5;
+  font-size: small;
 }
 
 .scroll {
@@ -63,7 +88,7 @@ ul {
   width: 100%;
   margin: 0 auto;
   overflow: auto;
-  height: 300px;
+  height: 350px;
   overflow: auto;
   overflow-y: hidden;
 }
@@ -75,7 +100,6 @@ ul {
 .cardPoster {
   padding-top: 10px;
   width: 150px;
-  border-radius: 5px;
   display: block;
   margin: auto;
 }
@@ -85,18 +109,18 @@ ul {
 }
 
 .boardGame {
-  height: 300px;
+  height: 350px;
   /* overflow-y: hidden; */
   /* position: relative; */
   bottom: 0px;
 }
 
 .lostModal {
-  background-color: #474860;
+  background-color: #212121;
   height: 200px;
   margin: auto;
   width: 50%;
-  border: 3px solid #edf5e1;
+  border: 3px solid #1db954;
   padding: 10px;
   border-radius: 20px;
 }
@@ -255,6 +279,7 @@ ul {
   }
 
   .card {
+    align-items: center;
     width: 120px;
     border-radius: 10px;
   }
@@ -328,6 +353,7 @@ ul {
   }
 
   .card {
+    align-items: center;
     width: 120px;
     border-radius: 10px;
   }
