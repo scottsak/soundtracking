@@ -26,10 +26,19 @@ const artistParameters = {
   },
 };
 
-const getRandomYear = () => {
-  const max = 2023;
-  const min = 1950;
-  return Math.floor(Math.random() * (max - min) + min);
+const getRandomNumber = ({ year, trackMax }) => {
+  if (year) {
+    const maxYear = 2023;
+    const minYear = 1950;
+    return Math.floor(Math.random() * (maxYear - minYear) + minYear);
+  }
+  if (trackMax) {
+    const maxTrackIndex = trackMax;
+    const minTrackIndex = 0;
+    return Math.floor(
+      Math.random() * (maxTrackIndex - minTrackIndex) + minTrackIndex
+    );
+  }
 };
 
 const addSongs = async ({
@@ -37,7 +46,10 @@ const addSongs = async ({
   randomYear,
   useBestOfYearPlaylist,
 }) => {
-  for (let i = 0; i < topSongPlaylists.length; i++) {
+  const randomTrackNumber = getRandomNumber({
+    trackMax: topSongPlaylists.length - 1,
+  });
+  for (let i = randomTrackNumber; i < topSongPlaylists.length; i++) {
     console.log("scotttest i", i);
     if (
       !albumIds.has(topSongPlaylists[i].track.album.id) &&
@@ -78,12 +90,17 @@ const addSongs = async ({
       });
       return true;
     }
+    if (i === topSongPlaylists.length - 1) {
+      console.log("scotttest makes a call resets i");
+      i = 0;
+    }
   }
   console.log("scotttest spotify return false");
   return false;
 };
 
 const getTopSongOfRandomYearPlaylist = async (randomYear) => {
+  console.log("scotttest makes a call inside playlist");
   const randomYearBestSongs = await fetch(
     `https://api.spotify.com/v1/search?q=Top+hits+of+${randomYear}&type=playlist`,
     artistParameters
@@ -110,6 +127,7 @@ const getRandomAlbum = async ({
     ? bestSongPlaylist
     : "4B0QzVzeHi0o637HoP3r6e";
   console.log("scotttest use bad spotify");
+  console.log("scotttest makes a call inside album");
   const topSongPlaylists = await fetch(
     `https://api.spotify.com/v1/playlists/${playlistToUse}/tracks`,
     artistParameters
@@ -122,8 +140,6 @@ const getRandomAlbum = async ({
       console.log("scotttest albumIds", albumIds);
 
       return topSongPlaylists;
-
-      // moviesFile.addMovie(data.tracks);
     })
     .catch((err) => {
       console.error(err);
@@ -134,22 +150,25 @@ const getRandomAlbum = async ({
     randomYear,
     useBestOfYearPlaylist,
   });
-  if (!addedSong) {
-    console.log("scotttest use bad song");
-    await getRandomAlbum({
-      bestSongPlaylist: "4B0QzVzeHi0o637HoP3r6e",
-      useBestOfYearPlaylist: false,
-    });
-  }
+  console.log("scotttest makes a call addedSong", addedSong);
+  // if (!addedSong) {
+  //   console.log("scotttest use bad song");
+  //   await getRandomAlbum({
+  //     bestSongPlaylist: "4B0QzVzeHi0o637HoP3r6e",
+  //     useBestOfYearPlaylist: false,
+  //   });
+  // }
 };
 
 const newMovie = async () => {
   console.log("scotttest makes a call");
-  const randomYear = getRandomYear();
+  const randomYear = getRandomNumber({ year: true });
   const randomBoolean = Math.random() < 0.5;
+  console.log("scotttest makes a call 2");
   const bestSongPlaylist = randomBoolean
     ? await getTopSongOfRandomYearPlaylist(randomYear)
     : "4B0QzVzeHi0o637HoP3r6e";
+  console.log("scotttest makes a call 3");
   await getRandomAlbum({
     bestSongPlaylist,
     randomYear,
