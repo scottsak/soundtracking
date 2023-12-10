@@ -27,7 +27,7 @@ const artistParameters = {
 };
 
 const getRandomYear = () => {
-  const max = 1960;
+  const max = 2023;
   const min = 1950;
   return Math.floor(Math.random() * (max - min) + min);
 };
@@ -38,16 +38,19 @@ const addSongs = async ({
   useBestOfYearPlaylist,
 }) => {
   for (let i = 0; i < topSongPlaylists.length; i++) {
-    console.log("scotttest i", {
-      i,
-      album: topSongPlaylists[i].track.album.id,
-    });
+    console.log("scotttest i", i);
     if (
       !albumIds.has(topSongPlaylists[i].track.album.id) &&
       ((useBestOfYearPlaylist &&
         topSongPlaylists[i].track.album.release_date.split("-")[0] ==
           randomYear) ||
-        !useBestOfYearPlaylist)
+        (!useBestOfYearPlaylist &&
+          !topSongPlaylists[i].track.album.name
+            .toLowerCase()
+            .includes("remaster") &&
+          !topSongPlaylists[i].track.album.name
+            .toLowerCase()
+            .includes("greatest hit")))
     ) {
       console.log(
         'scotttest topSongPlaylists[i].track.album.release_date.split("-")[0]',
