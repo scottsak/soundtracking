@@ -95,7 +95,6 @@ const getRandomAlbum = async (bestSongPlaylist, randomYear) => {
           break;
         }
       }
-      return topSongPlaylists;
       // moviesFile.addMovie(data.tracks);
     })
     .catch((err) => {
@@ -107,7 +106,8 @@ const newMovie = async () => {
   console.log("scotttest makes a call");
   const randomYear = getRandomYear();
   const bestSongPlaylist = await getTopSongOfRandomYearPlaylist(randomYear);
-  const randomAlbum = await getRandomAlbum(bestSongPlaylist, randomYear);
+  await getRandomAlbum(bestSongPlaylist, randomYear);
+  return { cardToPlay, songQueued, songsUsed };
 };
 
 export { newMovie, cardToPlay, songQueued, songsUsed };

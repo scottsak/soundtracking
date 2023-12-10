@@ -51,6 +51,9 @@ function Card(props) {
   function Findposter() {
     // console.log(props.poster)
     // console.log("------------------------------------")
+    if (props.poster === "spotifyLoad") {
+      return require("../images/spotifyImage.gif");
+    }
     if (props.poster === null) {
       return "https://f4.bcbits.com/img/a4139357031_10.jpg";
     }
@@ -61,7 +64,7 @@ function Card(props) {
     <Draggable
       draggableId={String(props.id)}
       index={props.index}
-      isDragDisabled={props.used}
+      isDragDisabled={props.used || props.loading}
     >
       {(provided, snapshot) => {
         return (
@@ -72,7 +75,12 @@ function Card(props) {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <img className="cardPoster" src={Findposter()} alt={props.title} />
+            <img
+              className="cardPoster"
+              src={Findposter()}
+              alt={props.title}
+              draggable={false}
+            />
             <CardUsed
               used={props.used}
               date={props.date}

@@ -38,8 +38,19 @@ function App() {
 
   const changeMovie = async () => {
     let nextMovie = api.songQueued[api.songQueued.length - 1];
+    setGameCard({
+      poster_path: "spotifyLoad",
+      loading: true,
+      id: "loadingSpin",
+    });
+    const { cardToPlay, songQueued, songsUsed } = await api.newMovie();
     setGameCard(nextMovie);
-    await api.newMovie();
+
+    console.log("scotttest inside { cardToPlay, songQueued, songsUsed }", {
+      cardToPlay,
+      songQueued,
+      songsUsed,
+    });
   };
 
   const handleOnDragEnd = async (result) => {

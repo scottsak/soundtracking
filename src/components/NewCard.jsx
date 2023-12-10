@@ -16,6 +16,7 @@ function NewCard(props) {
             id={props.movieItem.id}
             index={1000}
             used={false}
+            loading={props.movieItem.loading}
             title={props.movieItem.title}
             poster={props.movieItem.poster_path}
             date={props.movieItem.release_date}
