@@ -47,7 +47,7 @@ const addSongs = async ({
   useBestOfYearPlaylist,
 }) => {
   const randomTrackNumber = getRandomNumber({
-    trackMax: topSongPlaylists.length - 1,
+    trackMax: topSongPlaylists?.length - 1,
   });
   let wentThroughOnce = false;
   for (let i = randomTrackNumber; i < topSongPlaylists.length; i++) {
