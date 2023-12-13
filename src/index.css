@@ -34,6 +34,15 @@ ul {
   border-radius: 10px;
   font-family: "Noto Sans", sans-serif;
 }
+.cardBottomRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardHeart {
+  width: 20px;
+  height: 20px;
+}
 
 .lastCard {
   width: 170px;
@@ -58,6 +67,8 @@ ul {
 
 .cardArtist {
   font-size: small;
+  text-overflow: ellipsis;
+  overflow: hidden;
   color: #bab5b5;
 }
 
@@ -140,7 +151,8 @@ ul {
 }
 
 .cardWrong {
-  background-color: #9f2d4d !important;
+  /* background-color: #9f2d4d !important; */
+  background-color: #ca1818 !important;
 }
 
 .loseTable {
@@ -264,10 +276,10 @@ ul {
     padding-bottom: 20px;
   }
   .nextCard {
-    height: 150px;
+    height: 250px;
   }
   .boardGame {
-    height: 200px;
+    height: 320px;
     padding-top: 20px;
     /* overflow-y: hidden; */
     /* position: relative; */
@@ -275,23 +287,26 @@ ul {
   }
   .cardPoster {
     padding-top: 5px;
-    width: 100px;
+    width: 180px;
   }
 
   .card {
     align-items: center;
-    width: 120px;
+    width: 200px;
     border-radius: 10px;
   }
 
   .lastCard {
-    width: 120px;
+    width: 200px;
   }
 
   .loseButton {
     width: 140px;
   }
 
+  .cardInfoContainer {
+    width: 180px;
+  }
   .cardInfo {
     margin-top: 0px;
     font-size: 15px;
@@ -336,7 +351,7 @@ ul {
   }
 
   .boardGame {
-    height: 250px;
+    height: 300px;
     padding-top: 20px;
     /* overflow-y: hidden; */
     /* position: relative; */
@@ -345,7 +360,7 @@ ul {
 
   .cardPoster {
     padding-top: 5px;
-    width: 100px;
+    width: 150px;
   }
 
   .lastCard {
@@ -354,7 +369,11 @@ ul {
 
   .card {
     align-items: center;
-    width: 120px;
+    width: 175px;
     border-radius: 10px;
+  }
+
+  .cardInfoContainer {
+    width: 150px;
   }
 }

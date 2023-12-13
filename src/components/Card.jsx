@@ -29,7 +29,16 @@ function Card(props) {
           <div className="cardInfoContainer">
             <p className="cardInfo cardTitle">{props.title}</p>
             <p className="cardInfo cardArtist">{props.artist}</p>
-            <p className="cardInfo cardDate">{months[month] + " " + year}</p>
+            <div className="cardInfo cardBottomRow">
+              <p className="cardInfo cardDate">{months[month] + " " + year}</p>
+              {props.right && (
+                <img
+                  className="cardHeart"
+                  src={require("../images/heart-green.png")}
+                  alt="heart"
+                />
+              )}
+            </div>
           </div>
         </>
       );
@@ -49,8 +58,6 @@ function Card(props) {
   }
 
   function Findposter() {
-    // console.log(props.poster)
-    // console.log("------------------------------------")
     if (props.poster === "spotifyLoad") {
       return require("../images/spotifyImage.gif");
     }
@@ -84,6 +91,7 @@ function Card(props) {
             <CardUsed
               used={props.used}
               date={props.date}
+              right={props.right}
               title={props.title}
               artist={props.artist}
             />
