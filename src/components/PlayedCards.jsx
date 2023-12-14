@@ -25,6 +25,7 @@ function PlayedCards(props) {
                     artist={movieItem.artist}
                     date={movieItem.release_date}
                     right={movieItem.correct}
+                    startingCard={movieItem.startingCard}
                   />
                 </div>
                 {index === props.movieData.length - 1 && props.lives !== 0 && (

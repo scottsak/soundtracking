@@ -31,7 +31,7 @@ function Card(props) {
             <p className="cardInfo cardArtist">{props.artist}</p>
             <div className="cardInfo cardBottomRow">
               <p className="cardInfo cardDate">{months[month] + " " + year}</p>
-              {props.right && (
+              {!props.startingCard && props.right && (
                 <img
                   className="cardHeart"
                   src={require("../images/heart-green.png")}
@@ -94,6 +94,7 @@ function Card(props) {
               right={props.right}
               title={props.title}
               artist={props.artist}
+              startingCard={props.startingCard}
             />
           </div>
         );

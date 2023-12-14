@@ -22,6 +22,7 @@ function LoseScreen(props) {
     props.setLives(3);
     console.log("scotttest api.songsUsed", api.songsUsed);
     const songsUsed = api.songsUsed.filter((item) => item);
+    songsUsed.filter((item) => item)[songsUsed.length - 1].startingCard = true;
     songsUsed.filter((item) => item)[songsUsed.length - 1].correct = true;
     props.setMovie([songsUsed[songsUsed.length - 1]]);
 

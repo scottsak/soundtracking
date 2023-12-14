@@ -54,7 +54,6 @@ function App() {
   };
 
   const handleOnDragEnd = async (result) => {
-    let correct = true;
     if (result.destination !== null) {
       if (
         result.source.droppableId === "next" &&

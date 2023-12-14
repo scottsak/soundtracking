@@ -28,6 +28,7 @@ const songsUsed = [
     release_date: "2017-11-10",
     id: "0VE4kBnHJUgtMf0dy6DRmW",
     correct: true,
+    startingCard: true,
   },
 ];
 
