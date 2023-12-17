@@ -34,7 +34,7 @@ function Card(props) {
               {!props.startingCard && props.right && (
                 <img
                   className="cardHeart"
-                  src={require("../images/heart-green.png")}
+                  src={require("../images/annaPlusSign.png")}
                   alt="heart"
                 />
               )}
