@@ -62,7 +62,7 @@ function LoseScreen(props) {
       JSON.stringify({
         ...lastGameState,
         score: 0,
-        playedCards: songsUsed[songsUsed.length - 1],
+        playedCards: [songsUsed[songsUsed.length - 1]],
         lives: 3,
         playerState: "inProgress",
       })
