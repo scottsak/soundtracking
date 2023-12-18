@@ -96,7 +96,7 @@ ul {
 }
 
 .timelineCards {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   overflow: auto;
   height: 350px;
@@ -326,11 +326,11 @@ ul {
 
   #gameTitle {
     padding-top: 50px;
-    font-size: 30px;
+    font-size: 25px;
   }
 
   .hearts {
-    width: 40px;
+    width: 30px;
   }
 
   h1 {
@@ -369,11 +369,24 @@ ul {
 
   .card {
     align-items: center;
-    width: 175px;
+    width: 125px;
     border-radius: 10px;
   }
 
   .cardInfoContainer {
-    width: 150px;
+    width: 115px;
+  }
+
+  .cardInfo {
+    font-size: 12px;
+  }
+
+  .cardPoster {
+    width: 115px;
+  }
+
+  .cardHeart {
+    width: 18px;
+    height: 18px;
   }
 }

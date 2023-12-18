@@ -42,7 +42,7 @@ const addSongs = async ({
   });
   let wentThroughOnce = false;
   console.log("scotttest albumIds", albumIds);
-  for (let i = randomTrackNumber; i < topSongPlaylists.length; i++) {
+  for (let i = randomTrackNumber; i < topSongPlaylists?.length; i++) {
     if (
       !albumIds.has(topSongPlaylists[i].track.album.id) &&
       ((useBestOfYearPlaylist &&
