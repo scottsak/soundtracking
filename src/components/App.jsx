@@ -28,7 +28,7 @@ function App() {
     //set player state
     // setPlayerState(storedPlayerState);
     //set lives
-    setLives(storedPlayerState === "gameEnded" ? 0 : savedLives || 3);
+    setLives(storedPlayerState === "gameOver" ? 0 : savedLives || 3);
     //setScore
     setScore(storedScore || 0);
     //set played items
