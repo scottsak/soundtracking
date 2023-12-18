@@ -14,7 +14,7 @@ function App() {
   const [queuedSong, setQueuedSong] = useState([]);
   const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
-  const [playerState, setPlayerState] = useState("inProgress");
+  // const [playerState, setPlayerState] = useState("inProgress");
 
   useEffect(() => {
     const gameState = JSON.parse(localStorage.getItem("gameState") || "{}");
@@ -27,7 +27,7 @@ function App() {
       score: storedScore,
     } = gameState || {};
     //set player state
-    setPlayerState(storedPlayerState);
+    // setPlayerState(storedPlayerState);
     //set lives
     setLives(storedPlayerState === "gameEnded" ? 0 : savedLives || 3);
     //setScore
@@ -50,8 +50,6 @@ function App() {
     } else {
       setQueuedSong(startingSongs.songQueued[0]);
     }
-
-    console.log("scotttest cardsUsed", cardsUsed);
   }, []);
 
   const changeMovie = async ({ newLives, items, newScore }) => {

@@ -1,11 +1,5 @@
 // import axios from 'axios';
-import {
-  cardToPlay,
-  songQueued,
-  songsUsed,
-  authParameters,
-  albumIds,
-} from "./startingSongs.js";
+import { authParameters, albumIds } from "./startingSongs.js";
 
 const accessToken = await fetch(
   "https://accounts.spotify.com/api/token",
@@ -21,35 +15,6 @@ const artistParameters = {
     "Content-Type": "application/json",
     Authorization: "Bearer " + accessToken,
   },
-};
-
-const setStartingAPIValues = ({
-  savedCardToPlay,
-  savedPlayedCards,
-  savedSongQueued,
-}) => {
-  console.log("scotttest1 cardToPlay, songsUsed, songQueued", {
-    savedCardToPlay,
-    savedPlayedCards,
-    savedSongQueued,
-  });
-  console.log("scotttest1 cardToPlay, songsUsed, songQueued", {
-    cardToPlay,
-    songsUsed,
-    songQueued,
-  });
-  // songsUsed.pop();
-  // songQueued.pop();
-  // cardToPlay.pop();
-  cardToPlay.concat(savedCardToPlay);
-  songsUsed.concat(savedPlayedCards);
-  songQueued.concat(savedSongQueued);
-  console.log(
-    "scotttest2 cardToPlay, songsUsed, songQueued",
-    cardToPlay,
-    songsUsed,
-    songQueued
-  );
 };
 
 const getRandomNumber = ({ year, trackMax }) => {
@@ -71,18 +36,18 @@ const addSongs = async ({
   topSongPlaylists,
   randomYear,
   useBestOfYearPlaylist,
-  cardsUsed,
 }) => {
   const randomTrackNumber = getRandomNumber({
     trackMax: topSongPlaylists?.length - 1,
   });
   let wentThroughOnce = false;
+  console.log("scotttest albumIds", albumIds);
   for (let i = randomTrackNumber; i < topSongPlaylists.length; i++) {
     if (
       !albumIds.has(topSongPlaylists[i].track.album.id) &&
       ((useBestOfYearPlaylist &&
-        topSongPlaylists[i].track.album.release_date.split("-")[0] ==
-          randomYear) ||
+        `${topSongPlaylists[i].track.album.release_date.split("-")[0]}` ===
+          `${randomYear}`) ||
         (!useBestOfYearPlaylist &&
           !topSongPlaylists[i].track.album.name
             .toLowerCase()
@@ -102,9 +67,6 @@ const addSongs = async ({
         correct: null,
       };
       albumIds.add(albumChosen.id);
-      const lastCardPlayed = cardToPlay.pop();
-      cardToPlay.push(songQueued.pop());
-      songQueued.push(album);
 
       return {
         foundSong: true,

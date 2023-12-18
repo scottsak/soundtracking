@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
 function Card(props) {
@@ -21,7 +21,6 @@ function Card(props) {
     const used = props.used;
     let d = new Date(props.date);
     let month = d.getMonth();
-    let day = d.getDate();
     let year = d.getFullYear();
     if (used) {
       return (

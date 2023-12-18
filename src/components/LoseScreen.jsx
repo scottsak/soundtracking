@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
-import * as app from "./App.jsx";
-import * as api from "../api";
+import React, { useState } from "react";
 import * as startingSongs from "../startingSongs";
 
 function LoseScreen(props) {
