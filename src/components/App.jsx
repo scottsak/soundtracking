@@ -14,7 +14,6 @@ function App() {
   const [queuedSong, setQueuedSong] = useState([]);
   const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
-  // const [playerState, setPlayerState] = useState("inProgress");
 
   useEffect(() => {
     const gameState = JSON.parse(localStorage.getItem("gameState") || "{}");

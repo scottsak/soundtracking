@@ -9,21 +9,6 @@ function LoseScreen(props) {
     startingSongs.songsUsed[startingSongs.songsUsed.length - 1]
   );
 
-  // useEffect(() => {
-  //   console.log("scotttest checkHighscore");
-  //   const lastGameState = JSON.parse(localStorage.getItem("gameState"));
-  //   localStorage.setItem(
-  //     "gameState",
-  //     JSON.stringify({
-  //       ...lastGameState,
-  //       lives: 0,
-  //       playerState: "gameEnded",
-  //     })
-  //   );
-  //   const newGameState = JSON.parse(localStorage.getItem("gameState"));
-  //   console.log("scotttest newGameState", newGameState);
-  // }, []);
-
   function checkHighScore(score) {
     localStorage.setItem("lastItem", movieToBeSaved);
     console.log("scotttest checkHighscore");
@@ -78,10 +63,10 @@ function LoseScreen(props) {
         <tbody>
           <tr className="loseRow1">
             <th>
-              <h1>Your Score</h1>
+              <h1 className="loseScreenWording">Your Score</h1>
             </th>
             <th>
-              <h1>High Score</h1>
+              <h1 className="loseScreenWording">High Score</h1>
             </th>
           </tr>
           <tr className="loseRow2">
@@ -95,7 +80,12 @@ function LoseScreen(props) {
           <tr className="loseRow2">
             <td>
               <button id="playAgain" className="loseButton" onClick={playAgain}>
-                Play Again
+                <img
+                  className="replayIcon"
+                  src={require("../images/replayButton.png")}
+                  alt="replay button"
+                />
+                {/* Play Again */}
               </button>
             </td>
             <td>
@@ -104,7 +94,12 @@ function LoseScreen(props) {
                 className="loseButton"
                 onClick={shareScore}
               >
-                Share Score
+                <img
+                  className="shareIcon"
+                  src={require("../images/shareButton.png")}
+                  alt="replay button"
+                />
+                {/* Share Score */}
               </button>
             </td>
           </tr>

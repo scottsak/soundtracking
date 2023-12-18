@@ -111,6 +111,7 @@ ul {
 .cardPoster {
   padding-top: 10px;
   width: 150px;
+  height: 150px;
   display: block;
   margin: auto;
 }
@@ -128,22 +129,31 @@ ul {
 
 .lostModal {
   background-color: #212121;
-  height: 200px;
   margin: auto;
   width: 50%;
   border: 3px solid #1db954;
   padding: 10px;
   border-radius: 20px;
+  padding-bottom: 20px;
 }
 
 .loseButton {
   color: black;
   border: none;
   border-radius: 5px;
-  width: 150px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
+  background-color: transparent;
   /* margin: 10px; */
   /* border: 2px solid #5CDB95; */
+}
+
+.shareIcon {
+  width: 50px;
+}
+
+.replayIcon {
+  width: 50px;
 }
 
 .cardRight {
@@ -358,6 +368,10 @@ ul {
     bottom: 0px;
   }
 
+  .loseScreenWording {
+    font-size: 20px !important;
+  }
+
   .cardPoster {
     padding-top: 5px;
     width: 150px;
@@ -375,6 +389,7 @@ ul {
 
   .cardInfoContainer {
     width: 115px;
+    padding: 10px 0px;
   }
 
   .cardInfo {
@@ -383,6 +398,7 @@ ul {
 
   .cardPoster {
     width: 115px;
+    height: 115px;
   }
 
   .cardHeart {
