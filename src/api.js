@@ -3,12 +3,9 @@ import {
   cardToPlay,
   songQueued,
   songsUsed,
-  seedArtists,
   authParameters,
   albumIds,
 } from "./startingSongs.js";
-
-// const baseURL = "https://api.spotify.com/v1/recommendations?seed_artists=";
 
 const accessToken = await fetch(
   "https://accounts.spotify.com/api/token",
@@ -24,6 +21,35 @@ const artistParameters = {
     "Content-Type": "application/json",
     Authorization: "Bearer " + accessToken,
   },
+};
+
+const setStartingAPIValues = ({
+  savedCardToPlay,
+  savedPlayedCards,
+  savedSongQueued,
+}) => {
+  console.log("scotttest1 cardToPlay, songsUsed, songQueued", {
+    savedCardToPlay,
+    savedPlayedCards,
+    savedSongQueued,
+  });
+  console.log("scotttest1 cardToPlay, songsUsed, songQueued", {
+    cardToPlay,
+    songsUsed,
+    songQueued,
+  });
+  // songsUsed.pop();
+  // songQueued.pop();
+  // cardToPlay.pop();
+  cardToPlay.concat(savedCardToPlay);
+  songsUsed.concat(savedPlayedCards);
+  songQueued.concat(savedSongQueued);
+  console.log(
+    "scotttest2 cardToPlay, songsUsed, songQueued",
+    cardToPlay,
+    songsUsed,
+    songQueued
+  );
 };
 
 const getRandomNumber = ({ year, trackMax }) => {
@@ -45,6 +71,7 @@ const addSongs = async ({
   topSongPlaylists,
   randomYear,
   useBestOfYearPlaylist,
+  cardsUsed,
 }) => {
   const randomTrackNumber = getRandomNumber({
     trackMax: topSongPlaylists?.length - 1,
@@ -78,11 +105,15 @@ const addSongs = async ({
       const lastCardPlayed = cardToPlay.pop();
       cardToPlay.push(songQueued.pop());
       songQueued.push(album);
-      return true;
+
+      return {
+        foundSong: true,
+        newSongQueued: album,
+      };
     }
     if (i === topSongPlaylists.length - 1) {
       if (wentThroughOnce) {
-        return false;
+        return { foundSong: false };
       }
       i = 0;
       wentThroughOnce = true;
@@ -106,13 +137,14 @@ const getTopSongOfRandomYearPlaylist = async (randomYear) => {
     .catch((err) => {
       console.error(err);
     });
-  return randomYearBestSongs.id;
+  return randomYearBestSongs?.id;
 };
 
 const getRandomAlbum = async ({
   bestSongPlaylist,
   randomYear,
   useBestOfYearPlaylist,
+  cardsUsed,
 }) => {
   const playlistToUse = useBestOfYearPlaylist
     ? bestSongPlaylist
@@ -131,31 +163,38 @@ const getRandomAlbum = async ({
       console.error(err);
     });
 
-  const addedSong = await addSongs({
+  let addedSong = await addSongs({
     topSongPlaylists,
     randomYear,
     useBestOfYearPlaylist,
+    cardsUsed,
   });
-  if (!addedSong) {
-    await getRandomAlbum({
+  if (!addedSong.foundSong) {
+    addedSong = await getRandomAlbum({
       bestSongPlaylist: "4B0QzVzeHi0o637HoP3r6e",
       useBestOfYearPlaylist: false,
     });
   }
+  return addedSong;
 };
 
-const newMovie = async () => {
+const newMovie = async ({ cardsUsed }) => {
   const randomYear = getRandomNumber({ year: true });
   const randomBoolean = Math.random() < 0.5;
   const bestSongPlaylist = randomBoolean
     ? await getTopSongOfRandomYearPlaylist(randomYear)
     : "4B0QzVzeHi0o637HoP3r6e";
-  await getRandomAlbum({
+  const foundSongs = await getRandomAlbum({
     bestSongPlaylist,
     randomYear,
     useBestOfYearPlaylist: randomBoolean,
+    cardsUsed,
+    // albumIds,
   });
-  return { cardToPlay, songQueued, songsUsed };
+  return {
+    songQueued: foundSongs.newSongQueued,
+    albumIds: foundSongs.albumIds,
+  };
 };
 
-export { newMovie, cardToPlay, songQueued, songsUsed };
+export { newMovie };
