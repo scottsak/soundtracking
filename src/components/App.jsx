@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import * as api from "../api.js";
+import * as startingSongs from "../startingSongs.js";
 import { DragDropContext } from "react-beautiful-dnd";
 import PlayedCards from "./PlayedCards.jsx";
 import NewCard from "./NewCard.jsx";
@@ -8,48 +9,81 @@ import LoseScreen from "./LoseScreen.jsx";
 import Header from "./Header.jsx";
 
 function App() {
-  const [movieData, setMovie] = useState([]);
+  const [cardsUsed, setCardsUsed] = useState([]);
   const [gameCard, setGameCard] = useState({});
+  const [queuedSong, setQueuedSong] = useState([]);
   const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
+  const [playerState, setPlayerState] = useState("inProgress");
 
   useEffect(() => {
-    console.log("scotttest should run at start");
-    if (
-      localStorage.getItem("lastItem") === "undefined" ||
-      localStorage.getItem("lastItem") === null
-    ) {
-      setMovie([api.songsUsed[api.songsUsed.length - 1]]);
+    const gameState = JSON.parse(localStorage.getItem("gameState") || "{}");
+    const {
+      lives: savedLives,
+      cardToPlay: storedCardToPlay,
+      playedCards,
+      playerState: storedPlayerState,
+      songQueued: storedQueuedSong,
+      score: storedScore,
+    } = gameState || {};
+    //set player state
+    setPlayerState(storedPlayerState);
+    //set lives
+    setLives(storedPlayerState === "gameEnded" ? 0 : savedLives || 3);
+    //setScore
+    setScore(storedScore || 0);
+    //set played items
+    if (playedCards && playedCards.length) {
+      setCardsUsed(playedCards);
     } else {
-      const lastSong = [JSON.parse(localStorage.getItem("lastItem"))];
-      lastSong[0].correct = true;
-      console.log("scotttest lastSong", lastSong);
-      setMovie(lastSong);
+      setCardsUsed([startingSongs.songsUsed[0]]);
     }
-    if (
-      localStorage.getItem("lastGameCard") === "undefined" ||
-      localStorage.getItem("lastGameCard") === null
-    ) {
-      setGameCard(api.cardToPlay[api.cardToPlay.length - 1]);
+    //set card to play
+    if (storedCardToPlay) {
+      setGameCard(storedCardToPlay);
     } else {
-      setGameCard(JSON.parse(localStorage.getItem("lastGameCard")));
+      setGameCard(startingSongs.cardToPlay[0]);
     }
+    //set queued card
+    if (storedQueuedSong) {
+      setQueuedSong(storedQueuedSong);
+    } else {
+      setQueuedSong(startingSongs.songQueued[0]);
+    }
+
+    console.log("scotttest cardsUsed", cardsUsed);
   }, []);
 
-  const changeMovie = async () => {
-    let nextMovie = api.songQueued[api.songQueued.length - 1];
+  const changeMovie = async ({ newLives, items, newScore }) => {
+    const nextMovie = queuedSong;
     setGameCard({
       poster_path: "spotifyLoad",
       loading: true,
       id: "loadingSpin",
     });
-    const { cardToPlay, songQueued, songsUsed } = await api.newMovie();
+    const { songQueued: newSongQueued } = await api.newMovie({
+      cardsUsed,
+    });
+    console.log("scotttest finishes call", nextMovie);
+    setQueuedSong(newSongQueued);
     setGameCard(nextMovie);
+    console.log("scotttest newSongQueued", newSongQueued);
+    localStorage.setItem(
+      "gameState",
+      JSON.stringify({
+        playedCards: items,
+        lives: newLives,
+        score: newScore,
+        cardToPlay: nextMovie,
+        songQueued: newSongQueued,
+        playerState: newLives < 1 ? "gameOver" : "inProgress",
+      })
+    );
 
     console.log("scotttest inside { cardToPlay, songQueued, songsUsed }", {
-      cardToPlay,
-      songQueued,
-      songsUsed,
+      gameCard,
+      queuedSong,
+      cardsUsed,
     });
   };
 
@@ -59,11 +93,12 @@ function App() {
         result.source.droppableId === "next" &&
         result.destination.droppableId === "played"
       ) {
-        api.songsUsed.push(gameCard);
+        startingSongs.songsUsed.push(gameCard);
 
-        let tempMovie = api.songsUsed[api.songsUsed.length - 1];
+        let tempMovie =
+          startingSongs.songsUsed[startingSongs.songsUsed.length - 1];
 
-        const items = Array.from(movieData);
+        const items = Array.from(cardsUsed);
         items.splice(result.destination.index, 0, gameCard);
 
         items.sort(function (a, b) {
@@ -71,9 +106,11 @@ function App() {
           let y = new Date(b.release_date);
           return x - y;
         });
+        let newLives = lives;
+        let newScore = score;
         if (result.destination.index !== items.indexOf(tempMovie)) {
-          // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-          setLives(lives - 1);
+          newLives = lives - 1;
+          setLives(newLives);
           items[items.indexOf(tempMovie)].correct = false;
 
           document.body.style.backgroundColor = "# ";
@@ -81,12 +118,14 @@ function App() {
             document.body.style.backgroundColor = "#121212";
           }, 200);
         } else {
-          setScore(score + 1);
+          newScore = score + 1;
+          setScore(newScore);
           items[items.indexOf(tempMovie)].correct = true;
         }
         console.log("scotttest items", items);
-        setMovie(items);
-        await changeMovie();
+        setCardsUsed(items);
+        console.log("scotttest lives movie", newLives);
+        await changeMovie({ newLives, items, newScore });
         let lastGameCard = JSON.stringify(gameCard);
         if (lives > 1) {
           localStorage.setItem("lastGameCard", lastGameCard);
@@ -105,7 +144,7 @@ function App() {
             <LoseScreen
               score={score}
               setLives={setLives}
-              setMovie={setMovie}
+              setCardsUsed={setCardsUsed}
               setGameCard={setGameCard}
               setScore={setScore}
             />
@@ -120,7 +159,7 @@ function App() {
           </>
         )}
         <div className="boardGame scroll">
-          <PlayedCards movieData={movieData} lives={lives} />
+          <PlayedCards cardsUsed={cardsUsed} lives={lives} />
         </div>
       </DragDropContext>
     </div>

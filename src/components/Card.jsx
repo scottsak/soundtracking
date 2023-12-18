@@ -79,6 +79,7 @@ function Card(props) {
             className={isRight(props.right, props.used)}
             ref={provided.innerRef}
             snapshot={snapshot}
+            key={props.id}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >

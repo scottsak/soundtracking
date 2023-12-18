@@ -1,9 +1,3 @@
-const seedArtists = [
-  "06HL4z0CvFAxyc27GXpf02",
-  "6eUKZXaKkcviH0Ku9w2n3V",
-  "04gDigrS5kc9YWfZHwBETP",
-];
-
 const albumIds = new Set(["3OOFEF20WqtsUPcRbPY3L7"]);
 
 const authParameters = {
@@ -58,11 +52,4 @@ const cardToPlay = [
   },
 ];
 
-export {
-  cardToPlay,
-  songQueued,
-  songsUsed,
-  seedArtists,
-  albumIds,
-  authParameters,
-};
+export { cardToPlay, songQueued, songsUsed, albumIds, authParameters };

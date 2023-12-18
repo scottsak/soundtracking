@@ -11,7 +11,7 @@ function PlayedCards(props) {
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
-          {props.movieData.map((movieItem, index) => {
+          {props.cardsUsed.map((movieItem, index) => {
             return (
               <>
                 <div className="timelineCard">
@@ -28,7 +28,7 @@ function PlayedCards(props) {
                     startingCard={movieItem.startingCard}
                   />
                 </div>
-                {index === props.movieData.length - 1 && props.lives !== 0 && (
+                {index === props.cardsUsed.length - 1 && props.lives !== 0 && (
                   <div className="timelineCard lastCard"></div>
                 )}
               </>
