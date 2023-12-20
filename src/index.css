@@ -299,7 +299,7 @@ ul {
     /* position: relative; */
     bottom: 0px;
   }
-  .cardPoster {
+  /* .cardPoster {
     padding-top: 5px;
     width: 180px;
   }
@@ -308,7 +308,7 @@ ul {
     align-items: center;
     width: 200px;
     border-radius: 10px;
-  }
+  } */
 
   .lastCard {
     width: 200px;
@@ -318,14 +318,14 @@ ul {
     width: 140px;
   }
 
-  .cardInfoContainer {
+  /* .cardInfoContainer {
     width: 180px;
   }
   .cardInfo {
     margin-top: 0px;
     font-size: 15px;
     width: 100%;
-  }
+  } */
 }
 
 /* Extra small devices (phones, 600px and down) */
