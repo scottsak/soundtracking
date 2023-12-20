@@ -32,7 +32,7 @@ function Card(props) {
               <p className="cardInfo cardDate">{months[month] + " " + year}</p>
               {!props.startingCard && props.right && (
                 <img
-                  className="cardHeart"
+                  className="cardPoint"
                   src={require("../images/annaPlusSign.png")}
                   alt="heart"
                 />

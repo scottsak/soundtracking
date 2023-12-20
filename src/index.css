@@ -39,9 +39,9 @@ ul {
   justify-content: space-between;
 }
 
-.cardHeart {
-  width: 25px;
-  height: 25px;
+.cardPoint {
+  width: 20px;
+  height: 20px;
 }
 
 .lastCard {
@@ -405,7 +405,7 @@ ul {
     height: 115px;
   }
 
-  .cardHeart {
+  .cardPoint {
     width: 18px;
     height: 18px;
   }
