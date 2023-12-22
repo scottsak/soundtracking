@@ -141,6 +141,11 @@ const getRandomAlbum = async ({
 };
 
 const newMovie = async ({ cardsUsed }) => {
+  if (albumIds.size === 1) {
+    for (const card of cardsUsed) {
+      albumIds.add(card.id);
+    }
+  }
   const randomYear = getRandomNumber({ year: true });
   const randomBoolean = Math.random() < 0.5;
   const bestSongPlaylist = randomBoolean

@@ -133,7 +133,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <h1 id="gameTitle">SoundTracking</h1>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {lives < 1 ? (
