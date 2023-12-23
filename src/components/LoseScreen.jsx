@@ -18,7 +18,7 @@ function LoseScreen(props) {
       JSON.stringify({
         ...lastGameState,
         lives: 0,
-        playerState: "gameEnded",
+        playerState: "gameOver",
       })
     );
     const newGameState = JSON.parse(localStorage.getItem("gameState"));
