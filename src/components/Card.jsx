@@ -1,5 +1,6 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import * as spotify from "react-spotify-embed";
 
 function Card(props) {
   const months = [
@@ -46,8 +47,10 @@ function Card(props) {
     }
   }
 
-  function isRight(correct, used) {
-    if (used && correct) {
+  function cardClassToUse(correct, used, lives) {
+    if (used && lives === 0) {
+      return "cardOpened card";
+    } else if (used && correct) {
       return "cardRight card";
     } else if (used && !correct) {
       return "cardWrong card";
@@ -75,27 +78,41 @@ function Card(props) {
       {(provided, snapshot) => {
         return (
           <div
-            className={isRight(props.right, props.used)}
+            className={cardClassToUse(props.right, props.used, props.lives)}
             ref={provided.innerRef}
             snapshot={snapshot}
             key={props.id}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
           >
-            <img
-              className="cardPoster"
-              src={Findposter()}
-              alt={props.title}
-              draggable={false}
-            />
-            <CardUsed
-              used={props.used}
-              date={props.date}
-              right={props.right}
-              title={props.title}
-              artist={props.artist}
-              startingCard={props.startingCard}
-            />
+            <>
+              {props.lives !== 0 ? (
+                <>
+                  <img
+                    className="cardPoster"
+                    src={Findposter()}
+                    alt={props.title}
+                    draggable={false}
+                  />
+                  <CardUsed
+                    used={props.used}
+                    date={props.date}
+                    right={props.right}
+                    title={props.title}
+                    artist={props.artist}
+                    startingCard={props.startingCard}
+                  />
+                </>
+              ) : (
+                <>
+                  <spotify.Spotify
+                    link={`https://open.spotify.com/album/${props.id}?utm_source=generator&theme=0`}
+                    width={"100%"}
+                    height={"352"}
+                  />
+                </>
+              )}
+            </>
           </div>
         );
       }}

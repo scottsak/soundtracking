@@ -27,13 +27,20 @@ ul {
 .card {
   align-items: center;
   width: 175px;
+  display: flex;
   /* height: 270px; */
-  background-color: #1db954;
+  /* background-color: #1db954; */
   color: #faf9f6;
   text-align: center;
   border-radius: 10px;
   font-family: "Noto Sans", sans-serif;
 }
+
+.cardOpened {
+  width: 300px;
+  background-color: #212121;
+}
+
 .cardBottomRow {
   display: flex;
   justify-content: space-between;
@@ -45,7 +52,7 @@ ul {
 }
 
 .lastCard {
-  width: 170px;
+  width: 100px;
 }
 
 .cardInfoContainer {
@@ -99,7 +106,7 @@ ul {
   width: 95%;
   margin: 0 auto;
   overflow: auto;
-  height: 350px;
+  height: 375px;
   overflow: auto;
   overflow-y: hidden;
 }
@@ -117,11 +124,12 @@ ul {
 }
 
 .nextCard {
-  height: 250px;
+  height: 200px;
 }
 
 .boardGame {
-  height: 350px;
+  height: 375px;
+  margin-top: 50px;
   /* overflow-y: hidden; */
   /* position: relative; */
   bottom: 0px;
@@ -290,7 +298,7 @@ ul {
     padding-bottom: 20px;
   }
   .nextCard {
-    height: 250px;
+    height: 200px;
   }
   .boardGame {
     height: 320px;
@@ -311,7 +319,7 @@ ul {
   } */
 
   .lastCard {
-    width: 200px;
+    width: 100px;
   }
 
   .loseButton {
@@ -361,7 +369,7 @@ ul {
   }
 
   .nextCard {
-    height: 200px;
+    height: 150px;
   }
 
   .boardGame {

@@ -110,7 +110,7 @@ function App() {
           setLives(newLives);
           items[items.indexOf(tempMovie)].correct = false;
 
-          document.body.style.backgroundColor = "# ";
+          document.body.style.backgroundColor = "#";
           setTimeout(() => {
             document.body.style.backgroundColor = "#121212";
           }, 200);
@@ -133,7 +133,7 @@ function App() {
 
   return (
     <div>
-      {/* <Header /> */}
+      <Header />
       <h1 id="gameTitle">SoundTracking</h1>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {lives < 1 ? (
