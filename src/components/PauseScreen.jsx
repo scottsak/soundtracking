@@ -84,7 +84,11 @@ const PauseScreen = (props) => {
             </div>
           </div>
           <div className="modal-footer">
-            <p className="owner">Created and developed by Scott Sakurai</p>
+            <p className="owner">
+              Created and developed by Scott Sakurai
+              <br />
+              Designed with April Picato
+            </p>
             <p className="owner"></p>
           </div>
         </div>
