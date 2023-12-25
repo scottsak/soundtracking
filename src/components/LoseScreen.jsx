@@ -11,7 +11,6 @@ function LoseScreen(props) {
 
   function checkHighScore(score) {
     localStorage.setItem("lastItem", movieToBeSaved);
-    console.log("scotttest checkHighscore");
     const lastGameState = JSON.parse(localStorage.getItem("gameState"));
     localStorage.setItem(
       "gameState",
@@ -22,7 +21,6 @@ function LoseScreen(props) {
       })
     );
     const newGameState = JSON.parse(localStorage.getItem("gameState"));
-    console.log("scotttest newGameState", newGameState);
 
     if (highScore < score) {
       setHighScore(score);
@@ -33,7 +31,6 @@ function LoseScreen(props) {
 
   function playAgain() {
     props.setLives(3);
-    console.log("scotttest startingSongs.songsUsed", startingSongs.songsUsed);
     const songsUsed = startingSongs.songsUsed.filter((item) => item);
     songsUsed.filter((item) => item)[songsUsed.length - 1].startingCard = true;
     songsUsed.filter((item) => item)[songsUsed.length - 1].correct = true;

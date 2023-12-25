@@ -41,7 +41,6 @@ const addSongs = async ({
     trackMax: topSongPlaylists?.length - 1,
   });
   let wentThroughOnce = false;
-  console.log("scotttest albumIds", albumIds);
   for (let i = randomTrackNumber; i < topSongPlaylists?.length; i++) {
     if (
       !albumIds.has(topSongPlaylists[i].track.album.id) &&

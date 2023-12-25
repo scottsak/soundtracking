@@ -21,19 +21,16 @@ function Card(props) {
   ];
 
   function openModal({ used }) {
-    console.log("scotttest used", used);
     if (used) {
       setAlbumModal(true);
     }
   }
 
   function cardHover() {
-    console.log("scotttest hovered");
     setHover(true);
   }
 
   function cardUnHover() {
-    console.log("scotttest unhovered");
     setHover(false);
   }
 

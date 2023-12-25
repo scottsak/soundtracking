@@ -61,10 +61,8 @@ function App() {
     const { songQueued: newSongQueued } = await api.newMovie({
       cardsUsed,
     });
-    console.log("scotttest finishes call", nextMovie);
     setQueuedSong(newSongQueued);
     setGameCard(nextMovie);
-    console.log("scotttest newSongQueued", newSongQueued);
     localStorage.setItem(
       "gameState",
       JSON.stringify({
@@ -76,12 +74,6 @@ function App() {
         playerState: newLives < 1 ? "gameOver" : "inProgress",
       })
     );
-
-    console.log("scotttest inside { cardToPlay, songQueued, songsUsed }", {
-      gameCard,
-      queuedSong,
-      cardsUsed,
-    });
   };
 
   const handleOnDragEnd = async (result) => {
@@ -119,9 +111,7 @@ function App() {
           setScore(newScore);
           items[items.indexOf(tempMovie)].correct = true;
         }
-        console.log("scotttest items", items);
         setCardsUsed(items);
-        console.log("scotttest lives movie", newLives);
         await changeMovie({ newLives, items, newScore });
         let lastGameCard = JSON.stringify(gameCard);
         if (lives > 1) {
