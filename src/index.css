@@ -283,6 +283,11 @@ ul {
   font-weight: 800;
 }
 
+.rightCardExample {
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
 .card-examples {
   width: 100%;
   text-align: center;

@@ -54,6 +54,7 @@ const PauseScreen = (props) => {
                 </th>
                 <th>
                   <img
+                    className="rightCardExample"
                     src={require("../images/rightCard.png")}
                     alt="right card"
                     width={100}
