@@ -4,6 +4,7 @@ import AlbumInformation from "./AlbumInformation";
 
 function Card(props) {
   const [albumModal, setAlbumModal] = useState(false);
+  const [hovered, setHover] = useState(false);
   const months = [
     "Jan",
     "Feb",
@@ -24,6 +25,16 @@ function Card(props) {
     if (used) {
       setAlbumModal(true);
     }
+  }
+
+  function cardHover() {
+    console.log("scotttest hovered");
+    setHover(true);
+  }
+
+  function cardUnHover() {
+    console.log("scotttest unhovered");
+    setHover(false);
   }
 
   function CardUsed(props) {
@@ -55,14 +66,24 @@ function Card(props) {
     }
   }
 
-  function cardClassToUse(correct, used) {
-    if (used && correct) {
-      return "cardRight card";
-    } else if (used && !correct) {
-      return "cardWrong card";
-    } else {
+  function cardClassToUse(correct, used, hover) {
+    let classes = "card";
+    if (used && hover && correct) {
+      classes = classes.concat(" ", "hoveredRight");
+    }
+    if (used && hover && !correct) {
+      classes = classes.concat(" ", "hoveredWrong");
+    }
+    if (used && !hover && correct) {
+      classes = classes.concat(" ", "cardRight");
+    }
+    if (used && !hover && !correct) {
+      classes = classes.concat(" ", "cardWrong");
+    }
+    if (!used) {
       return null;
     }
+    return classes;
   }
 
   function Findposter() {
@@ -90,10 +111,12 @@ function Card(props) {
         {(provided, snapshot) => {
           return (
             <div
-              className={cardClassToUse(props.right, props.used, props.lives)}
+              className={cardClassToUse(props.right, props.used, hovered)}
               ref={provided.innerRef}
               snapshot={snapshot}
               key={props.id}
+              onMouseOver={cardHover}
+              onMouseOut={cardUnHover}
               onClick={() => openModal({ used: props.used })}
               {...provided.draggableProps}
               {...provided.dragHandleProps}

@@ -168,13 +168,21 @@ ul {
   width: 50px;
 }
 
+.hoveredRight {
+  background-color: #2c2c2c !important;
+}
+
+.hoveredWrong {
+  background-color: #d12727 !important;
+}
+
 .cardRight {
-  background-color: #212121 !important;
+  background-color: #212121;
 }
 
 .cardWrong {
   /* background-color: #9f2d4d !important; */
-  background-color: #ca1818 !important;
+  background-color: #ca1818;
 }
 
 .loseTable {
