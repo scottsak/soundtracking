@@ -19,8 +19,11 @@ function Card(props) {
     "Dec",
   ];
 
-  function openModal({ lives }) {
-    setAlbumModal(true);
+  function openModal({ used }) {
+    console.log("scotttest used", used);
+    if (used) {
+      setAlbumModal(true);
+    }
   }
 
   function CardUsed(props) {
@@ -91,7 +94,7 @@ function Card(props) {
               ref={provided.innerRef}
               snapshot={snapshot}
               key={props.id}
-              onClick={() => openModal({ lives: props.lives })}
+              onClick={() => openModal({ used: props.used })}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
             >
