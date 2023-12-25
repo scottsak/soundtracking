@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import * as spotify from "react-spotify-embed";
+import AlbumInformation from "./AlbumInformation";
 
 function Card(props) {
+  const [albumModal, setAlbumModal] = useState(false);
   const months = [
     "Jan",
     "Feb",
@@ -17,6 +18,10 @@ function Card(props) {
     "Nov",
     "Dec",
   ];
+
+  function openModal({ lives }) {
+    setAlbumModal(true);
+  }
 
   function CardUsed(props) {
     const used = props.used;
@@ -47,10 +52,8 @@ function Card(props) {
     }
   }
 
-  function cardClassToUse(correct, used, lives) {
-    if (used && lives === 0) {
-      return "cardOpened card";
-    } else if (used && correct) {
+  function cardClassToUse(correct, used) {
+    if (used && correct) {
       return "cardRight card";
     } else if (used && !correct) {
       return "cardWrong card";
@@ -70,53 +73,49 @@ function Card(props) {
   }
 
   return (
-    <Draggable
-      draggableId={String(props.id)}
-      index={props.index}
-      isDragDisabled={props.used || props.loading}
-    >
-      {(provided, snapshot) => {
-        return (
-          <div
-            className={cardClassToUse(props.right, props.used, props.lives)}
-            ref={provided.innerRef}
-            snapshot={snapshot}
-            key={props.id}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            <>
-              {props.lives !== 0 ? (
-                <>
-                  <img
-                    className="cardPoster"
-                    src={Findposter()}
-                    alt={props.title}
-                    draggable={false}
-                  />
-                  <CardUsed
-                    used={props.used}
-                    date={props.date}
-                    right={props.right}
-                    title={props.title}
-                    artist={props.artist}
-                    startingCard={props.startingCard}
-                  />
-                </>
-              ) : (
-                <>
-                  <spotify.Spotify
-                    link={`https://open.spotify.com/album/${props.id}?utm_source=generator&theme=0`}
-                    width={"100%"}
-                    height={"352"}
-                  />
-                </>
-              )}
-            </>
-          </div>
-        );
-      }}
-    </Draggable>
+    <>
+      <AlbumInformation
+        onClose={() => setAlbumModal(false)}
+        show={albumModal}
+        albumId={props.id}
+      />
+      <Draggable
+        draggableId={String(props.id)}
+        index={props.index}
+        isDragDisabled={props.used || props.loading}
+      >
+        {(provided, snapshot) => {
+          return (
+            <div
+              className={cardClassToUse(props.right, props.used, props.lives)}
+              ref={provided.innerRef}
+              snapshot={snapshot}
+              key={props.id}
+              onClick={() => openModal({ lives: props.lives })}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+            >
+              <>
+                <img
+                  className="cardPoster"
+                  src={Findposter()}
+                  alt={props.title}
+                  draggable={false}
+                />
+                <CardUsed
+                  used={props.used}
+                  date={props.date}
+                  right={props.right}
+                  title={props.title}
+                  artist={props.artist}
+                  startingCard={props.startingCard}
+                />
+              </>
+            </div>
+          );
+        }}
+      </Draggable>
+    </>
   );
 }
 

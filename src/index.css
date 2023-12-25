@@ -222,6 +222,10 @@ ul {
   opacity: 0;
 }
 
+.album-modal-content {
+  background-color: transparent !important;
+}
+
 .modal-content {
   width: 500px;
   background-color: #3c4b59;
@@ -244,6 +248,10 @@ ul {
 
 .modal-title {
   margin: 0;
+}
+
+.album-modal-body {
+  padding: 0px;
 }
 
 .modal-body {
