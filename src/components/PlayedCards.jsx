@@ -11,21 +11,22 @@ function PlayedCards(props) {
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
-          {props.cardsUsed.map((movieItem, index) => {
+          {props.cardsUsed.map((songItem, index) => {
             return (
               <>
                 <div className="timelineCard">
                   <Card
-                    key={movieItem.id}
-                    id={movieItem.id}
+                    key={songItem.id}
+                    id={songItem.id}
                     index={index}
                     used={true}
-                    title={movieItem.title}
-                    poster={movieItem.poster_path}
-                    artist={movieItem.artist}
-                    date={movieItem.release_date}
-                    right={movieItem.correct}
-                    startingCard={movieItem.startingCard}
+                    title={songItem.title}
+                    poster={songItem.poster_path}
+                    artist={songItem.artist}
+                    date={songItem.release_date}
+                    right={songItem.correct}
+                    startingCard={songItem.startingCard}
+                    lives={props.lives}
                   />
                 </div>
                 {index === props.cardsUsed.length - 1 && props.lives !== 0 && (

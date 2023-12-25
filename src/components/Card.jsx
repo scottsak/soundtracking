@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
+import AlbumInformation from "./AlbumInformation";
 
 function Card(props) {
+  const [albumModal, setAlbumModal] = useState(false);
   const months = [
     "Jan",
     "Feb",
@@ -16,6 +18,10 @@ function Card(props) {
     "Nov",
     "Dec",
   ];
+
+  function openModal({ lives }) {
+    setAlbumModal(true);
+  }
 
   function CardUsed(props) {
     const used = props.used;
@@ -46,7 +52,7 @@ function Card(props) {
     }
   }
 
-  function isRight(correct, used) {
+  function cardClassToUse(correct, used) {
     if (used && correct) {
       return "cardRight card";
     } else if (used && !correct) {
@@ -67,39 +73,49 @@ function Card(props) {
   }
 
   return (
-    <Draggable
-      draggableId={String(props.id)}
-      index={props.index}
-      isDragDisabled={props.used || props.loading}
-    >
-      {(provided, snapshot) => {
-        return (
-          <div
-            className={isRight(props.right, props.used)}
-            ref={provided.innerRef}
-            snapshot={snapshot}
-            key={props.id}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-          >
-            <img
-              className="cardPoster"
-              src={Findposter()}
-              alt={props.title}
-              draggable={false}
-            />
-            <CardUsed
-              used={props.used}
-              date={props.date}
-              right={props.right}
-              title={props.title}
-              artist={props.artist}
-              startingCard={props.startingCard}
-            />
-          </div>
-        );
-      }}
-    </Draggable>
+    <>
+      <AlbumInformation
+        onClose={() => setAlbumModal(false)}
+        show={albumModal}
+        albumId={props.id}
+      />
+      <Draggable
+        draggableId={String(props.id)}
+        index={props.index}
+        isDragDisabled={props.used || props.loading}
+      >
+        {(provided, snapshot) => {
+          return (
+            <div
+              className={cardClassToUse(props.right, props.used, props.lives)}
+              ref={provided.innerRef}
+              snapshot={snapshot}
+              key={props.id}
+              onClick={() => openModal({ lives: props.lives })}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+            >
+              <>
+                <img
+                  className="cardPoster"
+                  src={Findposter()}
+                  alt={props.title}
+                  draggable={false}
+                />
+                <CardUsed
+                  used={props.used}
+                  date={props.date}
+                  right={props.right}
+                  title={props.title}
+                  artist={props.artist}
+                  startingCard={props.startingCard}
+                />
+              </>
+            </div>
+          );
+        }}
+      </Draggable>
+    </>
   );
 }
 
