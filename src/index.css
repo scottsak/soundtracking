@@ -228,7 +228,8 @@ ul {
 
 .modal-content {
   width: 500px;
-  background-color: #3c4b59;
+  padding: 0px 20px;
+  background-color: #212121;
   transition: all 0.3s ease-in-out;
   transform: translateY(-200px);
 }
@@ -243,6 +244,8 @@ ul {
 
 .modal-header,
 .modal-footer {
+  border-bottom: none;
+  justify-content: right;
   padding: 10px;
 }
 
@@ -255,7 +258,8 @@ ul {
 }
 
 .modal-body {
-  padding: 10px;
+  padding: 0px 10px 10px 10px;
+  text-align: left;
   /* border-top: 1px solid #eee;
   border-bottom: 1px solid #eee; */
 }
@@ -267,6 +271,26 @@ ul {
   color: #ffffff;
 }
 
+.modal-titles {
+  color: #1db954;
+  font-weight: 800;
+}
+
+.card-examples {
+  width: 100%;
+  text-align: center;
+}
+
+.copyright-highlight:hover {
+  color: #1db954;
+  text-decoration: solid;
+}
+
+.copyright-div {
+  padding-top: 10px;
+  border-top: 1px solid white;
+}
+
 .copyright {
   /* font-family: ; */
   font-size: 12px;
@@ -275,6 +299,7 @@ ul {
 
 .modal-footer {
   display: block;
+  margin: 0px 10px;
 }
 
 .owner {

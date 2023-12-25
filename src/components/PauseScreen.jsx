@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ReactDOM from "react-dom";
 import { CSSTransition } from "react-transition-group";
+import closeButton from "../images/x-symbol.svg";
 import "../index.css";
 
 const PauseScreen = (props) => {
@@ -26,40 +27,60 @@ const PauseScreen = (props) => {
       <div className="modal" onClick={props.onClose}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <div className="modal-header">
-            <h2 className="modal-title">INFO</h2>
             <button onClick={props.onClose} className="button">
-              x
+              <img src={closeButton} alt="close button" width={15} />
             </button>
           </div>
           <div className="modal-body">
-            <h4>Rules:</h4>
+            <h5 className="modal-titles">Getting Started</h5>
             <p>
               Drag the top card to the bottom cards in the order of release
               date.
             </p>
+            <p>You get 3 lives and every wrongly placed card loses one life.</p>
             <p>
-              You get 3 lives and every wrongly placed card loses one life.
-              <br></br>
+              Cards marked in red are incorrect while cards marked with a plus
+              button in the bottom right corner will count towards your score.
             </p>
-            <h4>Note:</h4>
-            <p>
-              This app is a work in progress, there are still bugs to be
-              squashed so know they are being worked on. <br></br>
-              Please contact me{" "}
-              <a href="mailto: scottsakuraigames@gmail.com">
-                {" "}
-                @scottsakuraigames{" "}
+            <h5 className="modal-titles">Examples</h5>
+            <table className="card-examples">
+              <tr>
+                <th>
+                  <img
+                    src={require("../images/wrongCard.png")}
+                    alt="wrong card"
+                    width={100}
+                  />
+                </th>
+                <th>
+                  <img
+                    src={require("../images/rightCard.png")}
+                    alt="right card"
+                    width={100}
+                  />
+                </th>
+              </tr>
+              <tr>
+                <td>Wrong Card</td>
+                <td>Right Card</td>
+              </tr>
+            </table>
+            <p></p>
+            <div className="copyright-div">
+              <a
+                className="copyright-highlight"
+                href="https://developer.spotify.com/documentation/web-api"
+              >
+                <p className="copyright">
+                  Created with Spotify API&emsp;
+                  <img
+                    width="15px"
+                    src={require("../images/spotifyIcon.png")}
+                    alt="spotify icon"
+                  ></img>
+                </p>
               </a>
-              if you have any notes or ideas to help this app become great!{" "}
-            </p>
-            <p className="copyright">Used TMDB for movie content</p>
-            <a href="https://www.themoviedb.org/?language=en-US">
-              <img
-                width="100px"
-                src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg"
-                alt="the movie database"
-              ></img>
-            </a>
+            </div>
           </div>
           <div className="modal-footer">
             <p className="owner">Created and developed by Scott Sakurai</p>
