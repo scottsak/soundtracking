@@ -80,7 +80,7 @@ const addSongs = async ({
       wentThroughOnce = true;
     }
   }
-  return false;
+  return { foundSong: false };
 };
 
 const getTopSongOfRandomYearPlaylist = async (randomYear) => {
@@ -131,9 +131,12 @@ const getRandomAlbum = async ({
     cardsUsed,
   });
   if (!addedSong.foundSong) {
+    console.log("scotttest hits this error");
     addedSong = await getRandomAlbum({
       bestSongPlaylist: "4B0QzVzeHi0o637HoP3r6e",
       useBestOfYearPlaylist: false,
+      cardsUsed,
+      randomYear,
     });
   }
   return addedSong;
