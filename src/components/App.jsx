@@ -14,6 +14,7 @@ function App() {
   const [queuedSong, setQueuedSong] = useState([]);
   const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     const gameState = JSON.parse(localStorage.getItem("gameState") || "{}");
@@ -27,6 +28,9 @@ function App() {
     } = gameState || {};
     //set player state
     // setPlayerState(storedPlayerState);
+    if (!storedPlayerState) {
+      setShow(true);
+    }
     //set lives
     setLives(storedPlayerState === "gameOver" ? 0 : savedLives || 3);
     //setScore
@@ -123,7 +127,7 @@ function App() {
 
   return (
     <div>
-      <Header />
+      <Header show={show} setShow={setShow} />
       <h1 id="gameTitle">SoundTracking</h1>
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {lives < 1 ? (

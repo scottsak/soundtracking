@@ -1,11 +1,13 @@
 import React from "react";
+import emptyHeart from "../images/empty-heart.svg";
+import fullHeart from "../images/full-heart.svg";
 
 function Lives(props) {
-  function Heart() {
+  function Heart(props) {
     return (
       <img
-        src={require("../images/heart-green.png")}
-        alt="Girl in a jacket"
+        src={props.empty ? emptyHeart : fullHeart}
+        alt="heart"
         className="hearts"
       ></img>
     );
@@ -25,12 +27,15 @@ function Lives(props) {
         <>
           <Heart />
           <Heart />
+          <Heart empty={true} />
         </>
       );
     } else if (life === 1) {
       return (
         <>
           <Heart />
+          <Heart empty={true} />
+          <Heart empty={true} />
         </>
       );
     } else if (life === 0) {
