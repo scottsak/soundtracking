@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import AlbumInformation from "./AlbumInformation";
+import checkmark from "../images/checkmark.svg";
 
 function Card(props) {
   const [albumModal, setAlbumModal] = useState(false);
@@ -48,11 +49,7 @@ function Card(props) {
             <div className="cardInfo cardBottomRow">
               <p className="cardInfo cardDate">{months[month] + " " + year}</p>
               {!props.startingCard && props.right && (
-                <img
-                  className="cardPoint"
-                  src={require("../images/annaPlusSign.png")}
-                  alt="heart"
-                />
+                <img className="cardPoint" src={checkmark} alt="heart" />
               )}
             </div>
           </div>

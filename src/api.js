@@ -106,6 +106,7 @@ const getRandomAlbum = async ({
   randomYear,
   useBestOfYearPlaylist,
   cardsUsed,
+  retrySong = false,
 }) => {
   const playlistToUse = useBestOfYearPlaylist
     ? bestSongPlaylist
@@ -132,12 +133,16 @@ const getRandomAlbum = async ({
   });
   if (!addedSong.foundSong) {
     console.log("scotttest hits this error");
+    console.log("scotttest addedSong.foundSong", addedSong);
     addedSong = await getRandomAlbum({
       bestSongPlaylist: "4B0QzVzeHi0o637HoP3r6e",
       useBestOfYearPlaylist: false,
       cardsUsed,
       randomYear,
+      retrySong: true,
     });
+  } else if (retrySong) {
+    console.log("scotttest addedSong.foundSong Second", addedSong);
   }
   return addedSong;
 };
@@ -158,6 +163,7 @@ const newMovie = async ({ cardsUsed }) => {
     randomYear,
     useBestOfYearPlaylist: randomBoolean,
     cardsUsed,
+    retrySong: false,
     // albumIds,
   });
   return {
