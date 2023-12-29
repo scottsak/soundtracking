@@ -271,6 +271,29 @@ ul {
   border-bottom: 1px solid #eee; */
 }
 
+.pause-screen-spotify-div {
+  border-top: 1px solid white;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.spotify-information {
+  margin-top: 10px;
+}
+
+.pause-screen-text {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.spotify-screen-ex {
+  width: 60%;
+  align-self: center;
+  margin-bottom: 10px;
+}
+
 .button {
   border-radius: 50%;
   border: none;
@@ -318,8 +341,7 @@ ul {
   /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   text-align: center;
   font-size: 10px;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+  margin: 5px;
 }
 
 .hearts {

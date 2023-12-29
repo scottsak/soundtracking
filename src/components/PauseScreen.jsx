@@ -33,14 +33,17 @@ const PauseScreen = (props) => {
           </div>
           <div className="modal-body">
             <h5 className="modal-titles">Getting Started</h5>
-            <p>
+            <p className="pause-screen-text">
               Drag the top card to the bottom cards in the order of release
               date.
             </p>
-            <p>You get 3 lives and every wrongly placed card loses one life.</p>
-            <p>
-              Cards marked in red are incorrect while cards marked with a plus
-              button in the bottom right corner will count towards your score.
+            <p className="pause-screen-text">
+              You get 3 lives and every wrongly placed card loses one life.
+            </p>
+            <p className="pause-screen-text">
+              Cards marked in red are incorrect while cards marked with a
+              checkmark in the bottom right corner will count towards your
+              score.
             </p>
             <h5 className="modal-titles">Examples</h5>
             <table className="card-examples">
@@ -63,10 +66,21 @@ const PauseScreen = (props) => {
               </tr>
               <tr>
                 <td>Wrong Card</td>
-                <td>Right Card</td>
+                <td>Correct Card</td>
               </tr>
             </table>
             <p></p>
+            <div className="pause-screen-spotify-div">
+              <p className="pause-screen-text spotify-information">
+                Click on a card to learn more about the album, play some of the
+                tracks, and even add straight to your Spotify library!
+              </p>
+              {/* <img
+                src={require("../images/spotifyScreen.png")}
+                alt="spotify screen"
+                className="spotify-screen-ex"
+              /> */}
+            </div>
             <div className="copyright-div">
               <a
                 className="copyright-highlight"
