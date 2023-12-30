@@ -84,7 +84,7 @@ const addSongs = async ({
 };
 
 const getTopSongOfRandomYearPlaylist = async (randomYear) => {
-  console.log("scotttest makes api call year playlist");
+  console.debug("scotttest makes api call year playlist");
   const randomYearBestSongs = await fetch(
     `https://api.spotify.com/v1/search?q=Top+hits+of+${randomYear}&type=playlist`,
     artistParameters
@@ -111,7 +111,7 @@ const getRandomAlbum = async ({
   const playlistToUse = useBestOfYearPlaylist
     ? bestSongPlaylist
     : "4B0QzVzeHi0o637HoP3r6e";
-  console.log("scotttest makes api call playlist");
+  console.debug("scotttest makes api call playlist");
   const topSongPlaylists = await fetch(
     `https://api.spotify.com/v1/playlists/${playlistToUse}/tracks`,
     artistParameters
@@ -132,8 +132,6 @@ const getRandomAlbum = async ({
     cardsUsed,
   });
   if (!addedSong.foundSong) {
-    console.log("scotttest hits this error");
-    console.log("scotttest addedSong.foundSong", addedSong);
     addedSong = await getRandomAlbum({
       bestSongPlaylist: "4B0QzVzeHi0o637HoP3r6e",
       useBestOfYearPlaylist: false,
@@ -142,7 +140,7 @@ const getRandomAlbum = async ({
       retrySong: true,
     });
   } else if (retrySong) {
-    console.log("scotttest addedSong.foundSong Second", addedSong);
+    console.debug("scotttest addedSong.foundSong Second", addedSong);
   }
   return addedSong;
 };
@@ -158,8 +156,9 @@ const newMovie = async ({ cardsUsed }) => {
   const bestSongPlaylist = randomBoolean
     ? await getTopSongOfRandomYearPlaylist(randomYear)
     : "4B0QzVzeHi0o637HoP3r6e";
+  console.debug("scotttest bestSongPlaylist", bestSongPlaylist);
   const foundSongs = await getRandomAlbum({
-    bestSongPlaylist,
+    bestSongPlaylist: bestSongPlaylist || "4B0QzVzeHi0o637HoP3r6e",
     randomYear,
     useBestOfYearPlaylist: randomBoolean,
     cardsUsed,
