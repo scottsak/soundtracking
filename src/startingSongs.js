@@ -1,5 +1,7 @@
 const albumIds = new Set(["3OOFEF20WqtsUPcRbPY3L7"]);
 
+const customGamePlaylistId = "0seHpe5Jg3uRYPlzPjg7tH";
+
 const authParameters = {
   method: "POST",
   headers: {
@@ -52,4 +54,11 @@ const cardToPlay = [
   },
 ];
 
-export { cardToPlay, songQueued, songsUsed, albumIds, authParameters };
+export {
+  cardToPlay,
+  songQueued,
+  songsUsed,
+  albumIds,
+  authParameters,
+  customGamePlaylistId,
+};

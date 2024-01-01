@@ -1,6 +1,12 @@
-import { authParameters, albumIds } from "./startingSongs.js";
+import {
+  authParameters,
+  albumIds,
+  customGamePlaylistId,
+} from "./startingSongs.js";
 
 let artistParameters = {};
+
+let customGamePlaylist = [];
 
 const getAuth = async () => {
   try {
@@ -24,6 +30,77 @@ const getAuth = async () => {
     artistParameters = apiParameters;
 
     return artistParameters;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getPlaylistById = async (playlistToUse) => {
+  const topSongPlaylists = await fetch(
+    `https://api.spotify.com/v1/playlists/${playlistToUse}/tracks`,
+    artistParameters
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      const topSongPlaylists = data?.items;
+      return topSongPlaylists;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  return topSongPlaylists;
+};
+
+const getAllItemsFromPlaylistById = async (playlistToUse, pagesize, offset) => {
+  const topSongPlaylists = await fetch(
+    `https://api.spotify.com/v1/playlists/${playlistToUse}/tracks?limit=${pagesize}&offset=${offset}`,
+    artistParameters
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      return data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  return topSongPlaylists;
+};
+
+const getCustomSongs = async () => {
+  try {
+    let offset = 0;
+    let pagesize = 100;
+    let continueloop = true;
+
+    let result = await getAllItemsFromPlaylistById(
+      customGamePlaylistId,
+      pagesize,
+      offset
+    );
+    let playlistItems = result.items;
+
+    do {
+      try {
+        if (result.next !== null) {
+          offset = offset + pagesize;
+          result = await getAllItemsFromPlaylistById(
+            customGamePlaylistId,
+            pagesize,
+            offset
+          );
+          playlistItems = playlistItems.concat(result.items);
+        } else {
+          continueloop = false;
+        }
+      } catch (e) {
+        console.log("scotttest error", e);
+        continueloop = false;
+      }
+    } while (continueloop);
+
+    customGamePlaylist = playlistItems;
+
+    return playlistItems;
   } catch (error) {
     console.log(error);
   }
@@ -105,7 +182,6 @@ const getTopSongOfRandomYearPlaylist = async (randomYear) => {
     .then((data) => {
       const topSongPlaylists = data?.playlists?.items?.[0];
       return topSongPlaylists;
-      // moviesFile.addMovie(data.tracks);
     })
     .catch((err) => {
       console.error(err);
@@ -124,18 +200,9 @@ const getRandomAlbum = async ({
     ? bestSongPlaylist
     : "0seHpe5Jg3uRYPlzPjg7tH";
   console.debug("scotttest makes api call playlist");
-  const topSongPlaylists = await fetch(
-    `https://api.spotify.com/v1/playlists/${playlistToUse}/tracks`,
-    artistParameters
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      const topSongPlaylists = data?.items;
-      return topSongPlaylists;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  const topSongPlaylists = useBestOfYearPlaylist
+    ? await getPlaylistById(playlistToUse)
+    : customGamePlaylist;
 
   let addedSong = await addSongs({
     topSongPlaylists,
@@ -183,4 +250,4 @@ const newMovie = async ({ cardsUsed }) => {
   };
 };
 
-export { newMovie, getAuth };
+export { newMovie, getAuth, getCustomSongs };

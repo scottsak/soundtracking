@@ -18,7 +18,12 @@ function App() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    api.getAuth();
+    const getStartingInformation = async () => {
+      await api.getAuth();
+      await api.getCustomSongs();
+    };
+
+    getStartingInformation();
     const gameState = JSON.parse(localStorage.getItem("gameState") || "{}");
     const {
       lives: savedLives,
