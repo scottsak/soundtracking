@@ -1,20 +1,32 @@
-// import axios from 'axios';
 import { authParameters, albumIds } from "./startingSongs.js";
 
-const accessToken = await fetch(
-  "https://accounts.spotify.com/api/token",
-  authParameters
-)
-  .then((result) => result.json())
-  .then((data) => data.access_token)
-  .catch((err) => console.error(err));
+let artistParameters = {};
 
-const artistParameters = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: "Bearer " + accessToken,
-  },
+const getAuth = async () => {
+  try {
+    const accessTokenData = await fetch(
+      "https://accounts.spotify.com/api/token",
+      authParameters
+    )
+      .then((result) => result.json())
+      .then((data) => data)
+      .catch((err) => console.error(err));
+
+    const accessToken = accessTokenData?.access_token;
+    const apiParameters = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + accessToken,
+      },
+    };
+
+    artistParameters = apiParameters;
+
+    return artistParameters;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getRandomNumber = ({ year, trackMax }) => {
@@ -110,7 +122,7 @@ const getRandomAlbum = async ({
 }) => {
   const playlistToUse = useBestOfYearPlaylist
     ? bestSongPlaylist
-    : "4B0QzVzeHi0o637HoP3r6e";
+    : "0seHpe5Jg3uRYPlzPjg7tH";
   console.debug("scotttest makes api call playlist");
   const topSongPlaylists = await fetch(
     `https://api.spotify.com/v1/playlists/${playlistToUse}/tracks`,
@@ -152,15 +164,15 @@ const newMovie = async ({ cardsUsed }) => {
     }
   }
   const randomYear = getRandomNumber({ year: true });
-  const randomBoolean = Math.random() < 0.5;
-  const bestSongPlaylist = randomBoolean
+  const useBestOfYearPlaylist = Math.random() < 0.5;
+  const bestSongPlaylist = useBestOfYearPlaylist
     ? await getTopSongOfRandomYearPlaylist(randomYear)
-    : "4B0QzVzeHi0o637HoP3r6e";
+    : "0seHpe5Jg3uRYPlzPjg7tH";
   console.debug("scotttest bestSongPlaylist", bestSongPlaylist);
   const foundSongs = await getRandomAlbum({
-    bestSongPlaylist: bestSongPlaylist || "4B0QzVzeHi0o637HoP3r6e",
+    bestSongPlaylist: bestSongPlaylist || "0seHpe5Jg3uRYPlzPjg7tH",
     randomYear,
-    useBestOfYearPlaylist: randomBoolean,
+    useBestOfYearPlaylist,
     cardsUsed,
     retrySong: false,
     // albumIds,
@@ -171,4 +183,4 @@ const newMovie = async ({ cardsUsed }) => {
   };
 };
 
-export { newMovie };
+export { newMovie, getAuth };
