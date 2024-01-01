@@ -17,6 +17,7 @@ function App() {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
+    api.getAuth();
     const gameState = JSON.parse(localStorage.getItem("gameState") || "{}");
     const {
       lives: savedLives,
