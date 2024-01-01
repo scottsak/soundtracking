@@ -345,6 +345,15 @@ ul {
   margin: 5px;
 }
 
+.owner-link {
+  color: #1db954;
+}
+
+.owner-link:hover {
+  color: #1db954;
+  text-decoration: solid;
+}
+
 .hearts {
   width: 50px;
 }
