@@ -4,14 +4,15 @@ let artistParameters = {};
 
 const getAuth = async () => {
   try {
-    const accessToken = await fetch(
+    const accessTokenData = await fetch(
       "https://accounts.spotify.com/api/token",
       authParameters
     )
       .then((result) => result.json())
-      .then((data) => data.access_token)
+      .then((data) => data)
       .catch((err) => console.error(err));
 
+    const accessToken = accessTokenData?.access_token;
     const apiParameters = {
       method: "GET",
       headers: {
@@ -163,15 +164,15 @@ const newMovie = async ({ cardsUsed }) => {
     }
   }
   const randomYear = getRandomNumber({ year: true });
-  const randomBoolean = Math.random() < 0.5;
-  const bestSongPlaylist = randomBoolean
+  const useBestOfYearPlaylist = Math.random() < 0.5;
+  const bestSongPlaylist = useBestOfYearPlaylist
     ? await getTopSongOfRandomYearPlaylist(randomYear)
     : "0seHpe5Jg3uRYPlzPjg7tH";
   console.debug("scotttest bestSongPlaylist", bestSongPlaylist);
   const foundSongs = await getRandomAlbum({
     bestSongPlaylist: bestSongPlaylist || "0seHpe5Jg3uRYPlzPjg7tH",
     randomYear,
-    useBestOfYearPlaylist: randomBoolean,
+    useBestOfYearPlaylist,
     cardsUsed,
     retrySong: false,
     // albumIds,

@@ -9,6 +9,7 @@ import LoseScreen from "./LoseScreen.jsx";
 import Header from "./Header.jsx";
 
 function App() {
+  const TIME_TO_RESET_TOKEN = 3540000;
   const [cardsUsed, setCardsUsed] = useState([]);
   const [gameCard, setGameCard] = useState({});
   const [queuedSong, setQueuedSong] = useState([]);
@@ -54,6 +55,12 @@ function App() {
     } else {
       setQueuedSong(startingSongs.songQueued[0]);
     }
+    const interval = setInterval(() => {
+      console.log("scotttest Logs every minute");
+      api.getAuth();
+    }, TIME_TO_RESET_TOKEN);
+
+    return () => clearInterval(interval);
   }, []);
 
   const changeMovie = async ({ newLives, items, newScore }) => {
