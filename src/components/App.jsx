@@ -20,7 +20,6 @@ function App() {
   useEffect(() => {
     const getStartingInformation = async () => {
       await api.getAuth();
-      await api.getCustomSongs();
     };
 
     getStartingInformation();

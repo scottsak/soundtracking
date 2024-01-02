@@ -100,6 +100,8 @@ const getCustomSongs = async () => {
 
     customGamePlaylist = playlistItems;
 
+    console.debug("scotttest customGamePlaylist", customGamePlaylist);
+
     return playlistItems;
   } catch (error) {
     console.log(error);
@@ -212,7 +214,7 @@ const getRandomAlbum = async ({
   });
   if (!addedSong.foundSong) {
     addedSong = await getRandomAlbum({
-      bestSongPlaylist: "4B0QzVzeHi0o637HoP3r6e",
+      bestSongPlaylist: "0seHpe5Jg3uRYPlzPjg7tH",
       useBestOfYearPlaylist: false,
       cardsUsed,
       randomYear,
@@ -229,6 +231,10 @@ const newMovie = async ({ cardsUsed }) => {
     for (const card of cardsUsed) {
       albumIds.add(card.id);
     }
+  }
+  if (!customGamePlaylist.length) {
+    console.debug("scotttest gets custom playlist");
+    await getCustomSongs();
   }
   const randomYear = getRandomNumber({ year: true });
   const useBestOfYearPlaylist = Math.random() < 0.5;
