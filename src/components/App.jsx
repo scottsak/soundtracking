@@ -67,25 +67,25 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const changeMovie = async ({ newLives, items, newScore }) => {
-    const nextMovie = queuedSong;
+  const changeSong = async ({ newLives, items, newScore }) => {
+    const nextSong = queuedSong;
     setGameCard({
       poster_path: "spotifyLoad",
       loading: true,
       id: "loadingSpin",
     });
-    const { songQueued: newSongQueued } = await api.newMovie({
+    const { songQueued: newSongQueued } = await api.newSong({
       cardsUsed,
     });
     setQueuedSong(newSongQueued);
-    setGameCard(nextMovie);
+    setGameCard(nextSong);
     localStorage.setItem(
       "gameState",
       JSON.stringify({
         playedCards: items,
         lives: newLives,
         score: newScore,
-        cardToPlay: nextMovie,
+        cardToPlay: nextSong,
         songQueued: newSongQueued,
         playerState: newLives < 1 ? "gameOver" : "inProgress",
       })
@@ -100,7 +100,7 @@ function App() {
       ) {
         startingSongs.songsUsed.push(gameCard);
 
-        let tempMovie =
+        let tempSong =
           startingSongs.songsUsed[startingSongs.songsUsed.length - 1];
 
         const items = Array.from(cardsUsed);
@@ -113,10 +113,10 @@ function App() {
         });
         let newLives = lives;
         let newScore = score;
-        if (result.destination.index !== items.indexOf(tempMovie)) {
+        if (result.destination.index !== items.indexOf(tempSong)) {
           newLives = lives - 1;
           setLives(newLives);
-          items[items.indexOf(tempMovie)].correct = false;
+          items[items.indexOf(tempSong)].correct = false;
 
           document.body.style.backgroundColor = "#";
           setTimeout(() => {
@@ -125,10 +125,10 @@ function App() {
         } else {
           newScore = score + 1;
           setScore(newScore);
-          items[items.indexOf(tempMovie)].correct = true;
+          items[items.indexOf(tempSong)].correct = true;
         }
         setCardsUsed(items);
-        await changeMovie({ newLives, items, newScore });
+        await changeSong({ newLives, items, newScore });
         let lastGameCard = JSON.stringify(gameCard);
         if (lives > 1) {
           localStorage.setItem("lastGameCard", lastGameCard);
@@ -157,7 +157,7 @@ function App() {
             <Lives heart={lives} />
 
             <div className="nextCard">
-              <NewCard movieItem={gameCard} />
+              <NewCard songItem={gameCard} />
             </div>
           </>
         )}

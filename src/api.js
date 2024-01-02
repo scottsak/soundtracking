@@ -226,7 +226,7 @@ const getRandomAlbum = async ({
   return addedSong;
 };
 
-const newMovie = async ({ cardsUsed }) => {
+const newSong = async ({ cardsUsed }) => {
   if (albumIds.size === 1) {
     for (const card of cardsUsed) {
       albumIds.add(card.id);
@@ -256,4 +256,4 @@ const newMovie = async ({ cardsUsed }) => {
   };
 };
 
-export { newMovie, getAuth, getCustomSongs };
+export { newSong, getAuth, getCustomSongs };

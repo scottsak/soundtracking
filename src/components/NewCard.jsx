@@ -12,14 +12,14 @@ function NewCard(props) {
           ref={provided.innerRef}
         >
           <Card
-            key={props.movieItem.id}
-            id={props.movieItem.id}
+            key={props.songItem.id}
+            id={props.songItem.id}
             index={1000}
             used={false}
-            loading={props.movieItem.loading}
-            title={props.movieItem.title}
-            poster={props.movieItem.poster_path}
-            date={props.movieItem.release_date}
+            loading={props.songItem.loading}
+            title={props.songItem.title}
+            poster={props.songItem.poster_path}
+            date={props.songItem.release_date}
             correct={null}
           />
           {provided.placeholder}

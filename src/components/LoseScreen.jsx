@@ -5,12 +5,12 @@ function LoseScreen(props) {
   const [highScore, setHighScore] = useState(
     localStorage.getItem("highscore") ?? "0"
   );
-  let movieToBeSaved = JSON.stringify(
+  let songToBeSaved = JSON.stringify(
     startingSongs.songsUsed[startingSongs.songsUsed.length - 1]
   );
 
   function checkHighScore(score) {
-    localStorage.setItem("lastItem", movieToBeSaved);
+    localStorage.setItem("lastItem", songToBeSaved);
     const lastGameState = JSON.parse(localStorage.getItem("gameState"));
     localStorage.setItem(
       "gameState",
