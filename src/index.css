@@ -36,6 +36,10 @@ ul {
   font-family: "Noto Sans", sans-serif;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .cardOpened {
   width: 300px;
   background-color: #212121;
