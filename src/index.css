@@ -208,6 +208,7 @@ ul {
 .pause:hover {
   background-color: #212121;
   color: black;
+  cursor: pointer;
 }
 
 .modal {
