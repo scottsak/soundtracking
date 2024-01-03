@@ -7,6 +7,7 @@ import NewCard from "./NewCard.jsx";
 import Lives from "./Lives.jsx";
 import LoseScreen from "./LoseScreen.jsx";
 import Header from "./Header.jsx";
+import moment from "moment";
 
 function App() {
   const TIME_TO_RESET_TOKEN = 3540000;
@@ -16,10 +17,11 @@ function App() {
   const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
   const [show, setShow] = useState(false);
+  const [authToken, setAuthToken] = useState(moment().unix());
 
   useEffect(() => {
     const getStartingInformation = async () => {
-      await api.getAuth();
+      setAuthToken(await api.getAuth());
     };
 
     getStartingInformation();
@@ -74,6 +76,10 @@ function App() {
       loading: true,
       id: "loadingSpin",
     });
+    if (authToken > moment().unix()) {
+      const newAuthToken = await api.getAuth();
+      setAuthToken(newAuthToken);
+    }
     const { songQueued: newSongQueued } = await api.newSong({
       cardsUsed,
     });

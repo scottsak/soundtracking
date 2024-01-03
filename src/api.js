@@ -241,7 +241,6 @@ const newSong = async ({ cardsUsed }) => {
   const bestSongPlaylist = useBestOfYearPlaylist
     ? await getTopSongOfRandomYearPlaylist(randomYear)
     : "0seHpe5Jg3uRYPlzPjg7tH";
-  console.debug("scotttest bestSongPlaylist", bestSongPlaylist);
   const foundSongs = await getRandomAlbum({
     bestSongPlaylist: bestSongPlaylist || "0seHpe5Jg3uRYPlzPjg7tH",
     randomYear,
