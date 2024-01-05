@@ -20,6 +20,8 @@ function NewCard(props) {
             title={props.songItem.title}
             poster={props.songItem.poster_path}
             date={props.songItem.release_date}
+            apiLoading={props.apiLoading}
+            setApiLoading={props.setApiLoading}
             correct={null}
           />
           {provided.placeholder}

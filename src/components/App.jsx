@@ -17,11 +17,15 @@ function App() {
   const [lives, setLives] = useState(3);
   const [score, setScore] = useState(0);
   const [show, setShow] = useState(false);
+  const [apiLoading, setApiLoading] = useState(true);
   const [authToken, setAuthToken] = useState(moment().unix());
 
   useEffect(() => {
     const getStartingInformation = async () => {
+      setApiLoading(true);
       setAuthToken(await api.getAuth());
+      await api.getCustomSongs();
+      setApiLoading(false);
     };
 
     getStartingInformation();
@@ -163,7 +167,11 @@ function App() {
             <Lives heart={lives} />
 
             <div className="nextCard">
-              <NewCard songItem={gameCard} />
+              <NewCard
+                songItem={gameCard}
+                apiLoading={apiLoading}
+                setApiLoading={setApiLoading}
+              />
             </div>
           </>
         )}

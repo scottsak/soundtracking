@@ -81,7 +81,7 @@ function Card(props) {
   }
 
   function Findposter() {
-    if (props.poster === "spotifyLoad") {
+    if (props.poster === "spotifyLoad" || props.apiLoading) {
       return require("../images/spotifyImage.gif");
     }
     if (props.poster === null) {
@@ -100,7 +100,7 @@ function Card(props) {
       <Draggable
         draggableId={String(props.id)}
         index={props.index}
-        isDragDisabled={props.used || props.loading}
+        isDragDisabled={props.used || props.loading || props.apiLoading}
       >
         {(provided, snapshot) => {
           return (
