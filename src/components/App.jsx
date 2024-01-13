@@ -66,7 +66,6 @@ function App() {
       setQueuedSong(startingSongs.songQueued[0]);
     }
     const interval = setInterval(() => {
-      console.log("scotttest Logs every minute");
       api.getAuth();
     }, TIME_TO_RESET_TOKEN);
 

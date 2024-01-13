@@ -104,7 +104,7 @@ const PauseScreen = (props) => {
                 Scott Sakurai
               </a>
               <br />
-              Designed with April Picato
+              Designed with <a className="owner-link" href="http://www.ok4pril.com">April Picato</a>
             </p>
             <p className="owner"></p>
           </div>
