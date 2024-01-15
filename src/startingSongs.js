@@ -19,7 +19,7 @@ const songsUsed = [
     key: 123432154,
     poster_path:
       "https://i.scdn.co/image/ab67616d00001e02da5d5aeeabacacc1263c0f4b",
-    title: "reputation",
+    title: "Reputation",
     artist: "Taylor Swift",
     release_date: "2017-11-10",
     id: "6DEjYFkNZh67HP7R9PSZvv",

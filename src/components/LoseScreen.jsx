@@ -49,9 +49,8 @@ function LoseScreen(props) {
     );
   }
 
-  function shareScore() {
+  const shareScore = React.useCallback( async () =>{
     let copiedText = "soundtracking: ⭐" + props.score + "⭐\n\nMy Playlist:\n";
-    console.log('scotttest songsUsed', props.cardsUsed);
     let streak = ''
     for(const song of props.cardsUsed){
       copiedText += `${song.artist}: ${song.title}\n`
@@ -64,8 +63,8 @@ function LoseScreen(props) {
       }
     }
     copiedText += `\n${streak}\nhttps://soundtracking.xyz/`
-    navigator.clipboard.writeText(copiedText);
-  }
+    await navigator?.clipboard?.writeText(copiedText);
+  })
 
   return (
     <div className="lostModal">
