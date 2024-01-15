@@ -50,7 +50,20 @@ function LoseScreen(props) {
   }
 
   function shareScore() {
-    let copiedText = "ScreenTime: ⭐" + props.score + " ⭐";
+    let copiedText = "soundtracking: ⭐" + props.score + "⭐\n\nMy Playlist:\n";
+    console.log('scotttest songsUsed', props.cardsUsed);
+    let streak = ''
+    for(const song of props.cardsUsed){
+      copiedText += `${song.artist}: ${song.title}\n`
+      if(song.correct && song.startingCard){
+        streak += '⬜️'
+      } else if(song.correct){
+        streak += '🟩'
+      } else {
+        streak += '🟥'
+      }
+    }
+    copiedText += `\n${streak}\nhttps://soundtracking.xyz/`
     navigator.clipboard.writeText(copiedText);
   }
 
@@ -79,10 +92,10 @@ function LoseScreen(props) {
               <button id="playAgain" className="loseButton" onClick={playAgain}>
                 <img
                   className="replayIcon"
-                  src={require("../images/replayButton.png")}
+                  src={require("../images/replayIconWhite.png")}
                   alt="replay button"
                 />
-                {/* Play Again */}
+                Play Again
               </button>
             </td>
             <td>
@@ -93,10 +106,10 @@ function LoseScreen(props) {
               >
                 <img
                   className="shareIcon"
-                  src={require("../images/shareButton.png")}
+                  src={require("../images/shareIconWhite.png")}
                   alt="replay button"
                 />
-                {/* Share Score */}
+                Share Score
               </button>
             </td>
           </tr>

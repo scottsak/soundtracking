@@ -7,6 +7,15 @@ body {
   overflow: hidden; /* Hide scrollbars */
 }
 
+button:active {
+  outline: none;
+  border: none;
+}
+
+button:focus {
+  outline: 0;
+}
+
 a {
   color: inherit;
 }
@@ -153,11 +162,15 @@ ul {
   color: black;
   border: none;
   border-radius: 5px;
-  width: 70px;
-  height: 70px;
-  background-color: transparent;
+  color: white;
+  padding: 6px;
+
+  /* width: 70px;
+  height: 70px; */
+  background-color: #1db954;
+  font-size: 14px;
   /* margin: 10px; */
-  /* border: 2px solid #5CDB95; */
+  border: 2px solid #1db954;
 }
 
 .loseScreenWording {
@@ -165,11 +178,15 @@ ul {
 }
 
 .shareIcon {
-  width: 50px;
+  width: 22px;
+  padding-right: 8px;
+  margin-bottom: 5px;
 }
 
 .replayIcon {
-  width: 50px;
+  width: 24px;
+  padding-right: 5px;
+  margin-bottom: 2px
 }
 
 .hoveredRight {
@@ -451,7 +468,7 @@ ul {
   }
 
   .loseButton {
-    width: 140px;
+    width: 125px;
   }
 
   .nextCard {

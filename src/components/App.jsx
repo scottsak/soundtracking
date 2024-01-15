@@ -155,6 +155,7 @@ function App() {
           <div className="nextCard">
             <LoseScreen
               score={score}
+              cardsUsed={cardsUsed}
               setLives={setLives}
               setCardsUsed={setCardsUsed}
               setGameCard={setGameCard}
