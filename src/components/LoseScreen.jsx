@@ -52,19 +52,19 @@ function LoseScreen(props) {
   const shareScore = React.useCallback( async () =>{
     let copiedText = "soundtracking: ⭐" + props.score + "⭐\n\nMy Playlist:\n";
     let streak = ''
-    for(const song of props.cardsUsed){
-      copiedText += `${song.artist}: ${song.title}\n`
-      if(song.correct && song.startingCard){
-        streak += '⬜️'
-      } else if(song.correct){
-        streak += '🟩'
-      } else {
-        streak += '🟥'
-      }
-    }
-    copiedText += `\n${streak}\nhttps://soundtracking.xyz/`
-    const finalText = `${copiedText}\n${streak}\nhttps://soundtracking.xyz/`
-    await navigator?.clipboard?.writeText(finalText);
+    // for(const song of props.cardsUsed){
+    //   copiedText += `${song.artist}: ${song.title}\n`
+    //   if(song.correct && song.startingCard){
+    //     streak += '⬜️'
+    //   } else if(song.correct){
+    //     streak += '🟩'
+    //   } else {
+    //     streak += '🟥'
+    //   }
+    // }
+    // copiedText += `\n${streak}\nhttps://soundtracking.xyz/`
+    // const finalText = `${copiedText}\n${streak}\nhttps://soundtracking.xyz/`
+    await navigator?.clipboard?.writeText(copiedText);
   })
 
   return (
