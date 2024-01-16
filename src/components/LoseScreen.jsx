@@ -63,7 +63,8 @@ function LoseScreen(props) {
       }
     }
     copiedText += `\n${streak}\nhttps://soundtracking.xyz/`
-    await navigator?.clipboard?.writeText(copiedText);
+    const finalText = `${copiedText}\n${streak}\nhttps://soundtracking.xyz/`
+    await navigator?.clipboard?.writeText(finalText);
   })
 
   return (
