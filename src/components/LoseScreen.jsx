@@ -5,6 +5,7 @@ function LoseScreen(props) {
   const [highScore, setHighScore] = useState(
     localStorage.getItem("highscore") ?? "0"
   );
+  const [copied, setCopied] = useState(false);
   let songToBeSaved = JSON.stringify(
     startingSongs.songsUsed[startingSongs.songsUsed.length - 1]
   );
@@ -50,21 +51,24 @@ function LoseScreen(props) {
   }
 
   const shareScore = React.useCallback( async () =>{
-    let copiedText = "soundtracking: ⭐" + props.score + "⭐\n\nMy Playlist:\n";
-    let streak = ''
-    // for(const song of props.cardsUsed){
-    //   copiedText += `${song.artist}: ${song.title}\n`
-    //   if(song.correct && song.startingCard){
-    //     streak += '⬜️'
-    //   } else if(song.correct){
-    //     streak += '🟩'
-    //   } else {
-    //     streak += '🟥'
-    //   }
-    // }
-    // copiedText += `\n${streak}\nhttps://soundtracking.xyz/`
-    // const finalText = `${copiedText}\n${streak}\nhttps://soundtracking.xyz/`
-    await navigator?.clipboard?.writeText(copiedText);
+    let streak = '';
+    let copiedText = '';
+    setCopied(true);
+        setTimeout(function(){
+            setCopied(false);
+          }, 3000)
+    for(const song of props.cardsUsed){
+      copiedText += `${song.artist}: ${song.title}\n`
+      if(song.correct && song.startingCard){
+        streak += '⬜️'
+      } else if(song.correct){
+        streak += '🟩'
+      } else {
+        streak += '🟥'
+      }
+    }
+    const finalText = `SoundTracking: ⭐${props.score}⭐\n\nPlaylist:\n${copiedText}\n${streak}\nhttps://soundtracking.xyz/`
+    navigator?.clipboard?.writeText(finalText);
   })
 
   return (
@@ -109,7 +113,7 @@ function LoseScreen(props) {
                   src={require("../images/shareIconWhite.png")}
                   alt="replay button"
                 />
-                Share Score
+                {copied ? 'Copied ✍️' : 'Share Score'}
               </button>
             </td>
           </tr>
