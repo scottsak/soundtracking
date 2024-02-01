@@ -50,42 +50,43 @@ function LoseScreen(props) {
     );
   }
 
-  const shareScore = React.useCallback( async () =>{
-    let streak = '';
-    let copiedText = '';
+  const shareScore = React.useCallback(async () => {
+    let textShare = "SoundTracking: ⭐" + props.score + "⭐\nPlaylist:\n\n";
     setCopied(true);
-        setTimeout(function(){
-            setCopied(false);
-          }, 3000)
-    for(const song of props.cardsUsed){
-      copiedText += `${song.artist}: ${song.title}\n`
-      if(song.correct && song.startingCard){
-        streak += '⬜️'
-      } else if(song.correct){
-        streak += '🟩'
+    setTimeout(function () {
+      setCopied(false);
+    }, 3000);
+
+    for (const song of props.cardsUsed) {
+      textShare += song.artist + ":" + song.title + "\n";
+    }
+    textShare += "\n";
+    for (const song of props.cardsUsed) {
+      if (song.correct && song.startingCard) {
+        textShare += "⬜️";
+      } else if (song.correct) {
+        textShare += "🟩";
       } else {
-        streak += '🟥'
+        textShare += "🟥";
       }
     }
-      const finalText = `SoundTracking: ⭐${props.score}⭐\n\nPlaylist:\n${copiedText}\n${streak}\n${decodeURIComponent(
-    'https://soundtracking.xyz/'
-  )}`;
-    navigator?.clipboard?.writeText(finalText);
-  })
+    textShare += "\n\n" + "https://soundtracking.xyz/";
+    navigator?.clipboard?.writeText(textShare);
+  });
 
   return (
-    <div className="lostModal">
-      <table className="loseTable">
+    <div className='lostModal'>
+      <table className='loseTable'>
         <tbody>
-          <tr className="loseRow1">
+          <tr className='loseRow1'>
             <th>
-              <h1 className="loseScreenWording">Your Score</h1>
+              <h1 className='loseScreenWording'>Your Score</h1>
             </th>
             <th>
-              <h1 className="loseScreenWording">High Score</h1>
+              <h1 className='loseScreenWording'>High Score</h1>
             </th>
           </tr>
-          <tr className="loseRow2">
+          <tr className='loseRow2'>
             <td>
               <h2>{props.score}</h2>
             </td>
@@ -93,29 +94,29 @@ function LoseScreen(props) {
               <h2>{checkHighScore(props.score)}</h2>
             </td>
           </tr>
-          <tr className="loseRow2">
+          <tr className='loseRow2'>
             <td>
-              <button id="playAgain" className="loseButton" onClick={playAgain}>
+              <button id='playAgain' className='loseButton' onClick={playAgain}>
                 <img
-                  className="replayIcon"
+                  className='replayIcon'
                   src={require("../images/replayIconWhite.png")}
-                  alt="replay button"
+                  alt='replay button'
                 />
                 Play Again
               </button>
             </td>
             <td>
               <button
-                id="shareScore"
-                className="loseButton"
+                id='shareScore'
+                className='loseButton'
                 onClick={shareScore}
               >
                 <img
-                  className="shareIcon"
+                  className='shareIcon'
                   src={require("../images/shareIconWhite.png")}
-                  alt="replay button"
+                  alt='replay button'
                 />
-                {copied ? 'Copied ✍️' : 'Share Score'}
+                {copied ? "Copied ✍️" : "Share Score"}
               </button>
             </td>
           </tr>
