@@ -67,7 +67,9 @@ function LoseScreen(props) {
         streak += '🟥'
       }
     }
-    const finalText = `SoundTracking: ⭐${props.score}⭐\n\nPlaylist:\n${copiedText}\n${streak}\nhttps://soundtracking.xyz/`
+      const finalText = `SoundTracking: ⭐${props.score}⭐\n\nPlaylist:\n${copiedText}\n${streak}\n${decodeURIComponent(
+    'https://soundtracking.xyz/'
+  )}`;
     navigator?.clipboard?.writeText(finalText);
   })
 
