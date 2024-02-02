@@ -70,7 +70,7 @@ function LoseScreen(props) {
         textShare += '🟥';
       }
     }
-    textShare += '\n\n' + 'https://soundtracking.xyz/';
+    // textShare += '\n\n' + 'https://soundtracking.xyz';
     navigator?.clipboard?.writeText(textShare);
   });
 
