@@ -58,10 +58,10 @@ function LoseScreen(props) {
       setCopied(false);
     }, 3000);
 
-    // for (const song of props.cardsUsed) {
-    //   textShare += song.artist + ':' + song.title + '\n';
-    // }
-    // textShare += '\n';
+    for (const song of props.cardsUsed) {
+      textShare += song.artist + ':' + song.title + '\n';
+    }
+    textShare += '\n';
     // for (const song of props.cardsUsed) {
     //   if (song.correct && song.startingCard) {
     //     textShare += '⬜️';
@@ -71,7 +71,7 @@ function LoseScreen(props) {
     //     textShare += '🟥';
     //   }
     // }
-    // textShare += '\n\n' + 'https://soundtracking.xyz';
+    textShare += '\n\n' + 'https://soundtracking.xyz';
     navigator?.clipboard?.writeText(textShare);
   });
 
