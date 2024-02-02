@@ -51,28 +51,28 @@ function LoseScreen(props) {
   }
 
   const shareScore = React.useCallback(async () => {
-    let textShare = 'SoundTracking: ⭐' + props.score + '⭐\nPlaylist:\n\n';
+    // let textShare = 'SoundTracking: ⭐' + props.score + '⭐\nPlaylist:\n\n';
+    let textShare = 'SoundTracking';
     setCopied(true);
     setTimeout(function () {
       setCopied(false);
     }, 3000);
 
-    for (const song of props.cardsUsed) {
-      textShare += song.artist + ':' + song.title + '\n';
-    }
-    textShare += '\n';
-    for (const song of props.cardsUsed) {
-      if (song.correct && song.startingCard) {
-        textShare += '⬜️';
-      } else if (song.correct) {
-        textShare += '🟩';
-      } else {
-        textShare += '🟥';
-      }
-    }
-    textShare += '\n\n' + 'https://soundtracking.xyz';
-    const encodedTextShare = encodeURIComponent(textShare);
-    navigator?.clipboard?.writeText(encodedTextShare);
+    // for (const song of props.cardsUsed) {
+    //   textShare += song.artist + ':' + song.title + '\n';
+    // }
+    // textShare += '\n';
+    // for (const song of props.cardsUsed) {
+    //   if (song.correct && song.startingCard) {
+    //     textShare += '⬜️';
+    //   } else if (song.correct) {
+    //     textShare += '🟩';
+    //   } else {
+    //     textShare += '🟥';
+    //   }
+    // }
+    // textShare += '\n\n' + 'https://soundtracking.xyz';
+    navigator?.clipboard?.writeText(textShare);
   });
 
   return (
