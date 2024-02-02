@@ -70,8 +70,9 @@ function LoseScreen(props) {
         textShare += '🟥';
       }
     }
-    // textShare += '\n\n' + 'https://soundtracking.xyz';
-    navigator?.clipboard?.writeText(textShare);
+    textShare += '\n\n' + 'https://soundtracking.xyz';
+    const encodedTextShare = encodeURIComponent(textShare);
+    navigator?.clipboard?.writeText(encodedTextShare);
   });
 
   return (
