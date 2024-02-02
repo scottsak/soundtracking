@@ -52,7 +52,7 @@ function LoseScreen(props) {
 
   const shareScore = React.useCallback(async () => {
     // let textShare = 'SoundTracking: ⭐' + props.score + '⭐\nPlaylist:\n\n';
-    let textShare = 'SoundTracking ' + props.score;
+    let textShare = 'SoundTracking ' + props.score + '\nPlaylist:\n\n';
     setCopied(true);
     setTimeout(function () {
       setCopied(false);
