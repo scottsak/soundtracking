@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import * as startingSongs from "../startingSongs";
+import React, { useState } from 'react';
+import * as startingSongs from '../startingSongs';
 
 function LoseScreen(props) {
   const [highScore, setHighScore] = useState(
-    localStorage.getItem("highscore") ?? "0"
+    localStorage.getItem('highscore') ?? '0'
   );
   const [copied, setCopied] = useState(false);
   let songToBeSaved = JSON.stringify(
@@ -11,21 +11,21 @@ function LoseScreen(props) {
   );
 
   function checkHighScore(score) {
-    localStorage.setItem("lastItem", songToBeSaved);
-    const lastGameState = JSON.parse(localStorage.getItem("gameState"));
+    localStorage.setItem('lastItem', songToBeSaved);
+    const lastGameState = JSON.parse(localStorage.getItem('gameState'));
     localStorage.setItem(
-      "gameState",
+      'gameState',
       JSON.stringify({
         ...lastGameState,
         lives: 0,
-        playerState: "gameOver",
+        playerState: 'gameOver',
       })
     );
-    const newGameState = JSON.parse(localStorage.getItem("gameState"));
+    const newGameState = JSON.parse(localStorage.getItem('gameState'));
 
     if (highScore < score) {
       setHighScore(score);
-      localStorage.setItem("highscore", score);
+      localStorage.setItem('highscore', score);
     }
     return highScore;
   }
@@ -37,42 +37,40 @@ function LoseScreen(props) {
     songsUsed.filter((item) => item)[songsUsed.length - 1].correct = true;
     props.setCardsUsed([songsUsed[songsUsed.length - 1]]);
     props.setScore(0);
-    const lastGameState = JSON.parse(localStorage.getItem("gameState"));
+    const lastGameState = JSON.parse(localStorage.getItem('gameState'));
     localStorage.setItem(
-      "gameState",
+      'gameState',
       JSON.stringify({
         ...lastGameState,
         score: 0,
         playedCards: [songsUsed[songsUsed.length - 1]],
         lives: 3,
-        playerState: "inProgress",
+        playerState: 'inProgress',
       })
     );
   }
 
   const shareScore = React.useCallback(async () => {
-    let textShare = "SoundTracking: \nPlaylist:\n\n";
+    let textShare = 'SoundTracking: ⭐' + props.score + '⭐\nPlaylist:\n\n';
     setCopied(true);
     setTimeout(function () {
       setCopied(false);
     }, 3000);
 
-    // for (const song of props.cardsUsed) {
-    //   console.log("scotttest song.artist", song.artist);
-    //   console.log("scotttest song.title", song.title);
-    //   textShare += song.artist + ":" + song.title + "\n";
-    // }
-    // textShare += "\n";
-    // for (const song of props.cardsUsed) {
-    //   if (song.correct && song.startingCard) {
-    //     textShare += "⬜️";
-    //   } else if (song.correct) {
-    //     textShare += "🟩";
-    //   } else {
-    //     textShare += "🟥";
-    //   }
-    // }
-    // textShare += "\n\n" + "https://soundtracking.xyz/";
+    for (const song of props.cardsUsed) {
+      textShare += song.artist + ':' + song.title + '\n';
+    }
+    textShare += '\n';
+    for (const song of props.cardsUsed) {
+      if (song.correct && song.startingCard) {
+        textShare += '⬜️';
+      } else if (song.correct) {
+        textShare += '🟩';
+      } else {
+        textShare += '🟥';
+      }
+    }
+    textShare += '\n\n' + 'https://soundtracking.xyz/';
     navigator?.clipboard?.writeText(textShare);
   });
 
@@ -101,7 +99,7 @@ function LoseScreen(props) {
               <button id='playAgain' className='loseButton' onClick={playAgain}>
                 <img
                   className='replayIcon'
-                  src={require("../images/replayIconWhite.png")}
+                  src={require('../images/replayIconWhite.png')}
                   alt='replay button'
                 />
                 Play Again
@@ -115,10 +113,10 @@ function LoseScreen(props) {
               >
                 <img
                   className='shareIcon'
-                  src={require("../images/shareIconWhite.png")}
+                  src={require('../images/shareIconWhite.png')}
                   alt='replay button'
                 />
-                {copied ? "Copied ✍️" : "Share Score"}
+                {copied ? 'Copied ✍️' : 'Share Score'}
               </button>
             </td>
           </tr>
