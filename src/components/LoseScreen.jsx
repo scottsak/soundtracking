@@ -59,7 +59,7 @@ function LoseScreen(props) {
     }, 3000);
 
     for (const song of props.cardsUsed) {
-      textShare += song.artist + ':' + song.title + '\n';
+      textShare += song.artist + ': ' + song.title + '\n';
     }
     textShare += '\n';
     for (const song of props.cardsUsed) {
