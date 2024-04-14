@@ -4,6 +4,7 @@ A simple game to test your music knowledge.
 
 ## Description
 A web application where you test your music trivia. This application is created using React.js
+
 <img width="1512" alt="image" src="https://github.com/scottsak/soundtracking/assets/48599109/61ec0e1d-5c61-4f22-9a4b-4336ce2cec11">
 
 ## Getting Started
