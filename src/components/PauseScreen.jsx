@@ -113,7 +113,7 @@ const PauseScreen = (props) => {
                 className='owner-link'
                 href='https://github.com/scottsak/soundtracking'
               >
-                Github Repo
+                
               </a>
             </p>
             <p className='owner'></p>
