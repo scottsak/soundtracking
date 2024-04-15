@@ -1,5 +1,6 @@
 # SoundTracking
 
+[Lin to the app](https://soundtracking.xyz/)
 A simple game to test your music knowledge.
 
 ## Description
